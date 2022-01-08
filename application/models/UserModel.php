@@ -7,8 +7,8 @@ class UserModel extends CI_Model
 {
     public function get_users()
     {
-        $query = $this->db->get('user');
-        return $query->result();
+        $query = $this->db->query("SELECT * FROM user");
+        return $query->result_array();
     }
 
     public function get_user_by_id($id)
