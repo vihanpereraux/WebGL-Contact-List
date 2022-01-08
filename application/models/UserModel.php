@@ -24,6 +24,27 @@ class UserModel extends CI_Model
         // prebuilt codeigniter query class
         return $this->db->insert('user', $response);
     }
+
+    public function update_user($response, $id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('user', $response);
+    }
+
+    public function delete_user($id)
+    {
+        $get_query = $this->db->get('user');
+        if($get_query->num_rows() >= $id)
+        {
+            $query = $this->db->delete('user', ['id' => $id]);
+            return $query;
+        }
+        else
+        {
+            return null;
+        }
+        
+    }
 }
 
 ?>
