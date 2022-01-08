@@ -57,4 +57,5 @@ $route['api/users'] = 'api/Contacts/index';
 
 $route['api/users/insert'] = 'api/Contacts/storeUser';
 
-
+// :any means accepts letters and numbers both 
+$route['api/users/getbyid/(:any)'] = 'api/Contacts/getUserbyId/$1';

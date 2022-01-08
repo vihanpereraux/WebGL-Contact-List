@@ -11,6 +11,14 @@ class UserModel extends CI_Model
         return $query->result();
     }
 
+    public function get_user_by_id($id)
+    {
+        //$result = $this->db->where('id', $id);
+        $this->db->where('id', $id);
+        $query = $this->db->get('user');
+        return $query->row();
+    }
+
     public function insert_user($response)
     {
         // prebuilt codeigniter query class

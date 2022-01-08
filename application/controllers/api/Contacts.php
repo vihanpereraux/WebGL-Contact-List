@@ -25,6 +25,13 @@ class Contacts extends RestController
         //echo "I am Employee index()";
     }
 
+    public function getUserbyId_get($id)
+    {
+        $user = new UserModel;
+        $result = $user->get_user_by_id($id);
+        $this->response($result, 200);
+    }
+
     public function storeUser_post()
     {
         $user = new UserModel;
