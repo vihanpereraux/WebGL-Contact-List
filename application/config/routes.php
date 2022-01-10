@@ -58,7 +58,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['api/users'] = 'api/Users/index';
 
 $route['api/users/insert'] = 'api/Users/storeUser';
-
 // :any means accepts letters and numbers both 
 $route['api/users/getbyid/(:any)'] = 'api/Users/getUserbyId/$1';
 
@@ -71,7 +70,6 @@ $route['api/users/delete/(:any)'] = 'api/Users/deleteUser/$1';
 $route['api/contacts'] = 'api/Contacts/index';
 
 $route['api/contacts/insert'] = 'api/Contacts/storeContact';
-
 // :any means accepts letters and numbers both 
 $route['api/contacts/getbyid/(:any)'] = 'api/Contacts/getContactbyId/$1';
 
@@ -82,7 +80,6 @@ $route['api/contacts/delete'] = 'api/Users/deleteContact';
 
 // Tags routes
 $route['api/tags'] = 'api/Tags/index';
-
 // :any means accepts letters and numbers both 
 $route['api/tags/getbyid/(:any)'] = 'api/Tags/getTagbyId/$1';
 
@@ -91,3 +88,15 @@ $route['api/tags/insert'] = 'api/Tags/storeTag';
 $route['api/tags/update/(:any)'] = 'api/Tags/updateTag/$1';
 
 $route['api/tags/delete/(:any)'] = 'api/Tags/deleteTag/$1';
+
+
+// Attachments routes
+$route['api/attachments'] = 'api/Attachments/index';
+// :any means accepts letters and numbers both 
+$route['api/attachments/getbyid/(:any)'] = 'api/Attachments/getAttachmentbyId/$1';
+
+$route['api/attachments/insert/(:any)'] = 'api/Attachments/storeAttachment/$1';
+
+$route['api/attachments/update/(:any)'] = 'api/Attachments/updateAttachment/$1';
+
+$route['api/attachments/delete/(:any)'] = 'api/Attachments/deleteAttachment/$1';
