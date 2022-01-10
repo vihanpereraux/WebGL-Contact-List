@@ -17,10 +17,10 @@ class Attachments extends RestController
         $this->load->model('AttachmentModel');
     }
 
-    public function index_get()
+    public function index_get($contact_id)
     {
         $attachment = new AttachmentModel;
-        $result = $attachment->get_attachments();
+        $result = $attachment->get_attachments($contact_id);
         $this->response($result, 200);
     }
 
