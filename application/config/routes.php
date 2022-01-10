@@ -53,6 +53,8 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
+// Users routes
 $route['api/users'] = 'api/Users/index';
 
 $route['api/users/insert'] = 'api/Users/storeUser';
@@ -65,7 +67,7 @@ $route['api/users/update/(:any)'] = 'api/Users/updateUser/$1';
 $route['api/users/delete/(:any)'] = 'api/Users/deleteUser/$1';
 
 
-
+// Contacts routes
 $route['api/contacts'] = 'api/Contacts/index';
 
 $route['api/contacts/insert'] = 'api/Contacts/storeContact';
@@ -76,3 +78,16 @@ $route['api/contacts/getbyid/(:any)'] = 'api/Contacts/getContactbyId/$1';
 $route['api/contacts/update/(:any)'] = 'api/Contacts/updateContact/$1';
 
 $route['api/contacts/delete'] = 'api/Users/deleteContact';
+
+
+// Tags routes
+$route['api/tags'] = 'api/Tags/index';
+
+// :any means accepts letters and numbers both 
+$route['api/tags/getbyid/(:any)'] = 'api/Tags/getTagbyId/$1';
+
+$route['api/tags/insert'] = 'api/Tags/storeTag';
+
+$route['api/tags/update/(:any)'] = 'api/Tags/updateTag/$1';
+
+$route['api/tags/delete/(:any)'] = 'api/Tags/deleteTag/$1';

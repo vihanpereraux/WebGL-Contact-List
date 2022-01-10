@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
             </table>
-            <button id="add-contact">press me</button>
+            <button class="btn btn-success" id="add-contact">Update</button>
         </div>
         
     </div>
