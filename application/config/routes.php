@@ -53,13 +53,26 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['api/users'] = 'api/Contacts/index';
+$route['api/users'] = 'api/Users/index';
 
-$route['api/users/insert'] = 'api/Contacts/storeUser';
+$route['api/users/insert'] = 'api/Users/storeUser';
 
 // :any means accepts letters and numbers both 
-$route['api/users/getbyid/(:any)'] = 'api/Contacts/getUserbyId/$1';
+$route['api/users/getbyid/(:any)'] = 'api/Users/getUserbyId/$1';
 
-$route['api/users/update/(:any)'] = 'api/Contacts/updateUser/$1';
+$route['api/users/update/(:any)'] = 'api/Users/updateUser/$1';
 
-$route['api/users/delete/(:any)'] = 'api/Contacts/deleteUser/$1';
+$route['api/users/delete/(:any)'] = 'api/Users/deleteUser/$1';
+
+
+
+$route['api/contacts'] = 'api/Contacts/index';
+
+$route['api/contacts/insert'] = 'api/Contacts/storeContact';
+
+// :any means accepts letters and numbers both 
+$route['api/contacts/getbyid/(:any)'] = 'api/Contacts/getContactbyId/$1';
+
+$route['api/contacts/update/(:any)'] = 'api/Contacts/updateContact/$1';
+
+$route['api/contacts/delete/(:any)'] = 'api/Users/deleteContact/$1';

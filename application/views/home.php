@@ -38,13 +38,12 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <td><input class="form-control Id-input"></td>
-                            <td><input class="form-control username-input"></td>
-                            <td><input class="form-control fname-input"></td>
-                            <td><input class="form-control lname-input"></td>
-                            <td><input class="form-control number-input"></td>
-                            <td><input class="form-control email-input"></td>
-                            <td><input class="form-control password-input"></td>
+                            <td><input class="form-control" id="username-input"></td>
+                            <td><input class="form-control" id="fname-input"></td>
+                            <td><input class="form-control" id="lname-input"></td>
+                            <td><input class="form-control" id="number-input"></td>
+                            <td><input class="form-control" id="email-input"></td>
+                            <td><input class="form-control" id="password-input"></td>
                             <td><button class="btn btn-primary" id="add-contact">Add</button></td>
                         </tr>
                     </thead>
@@ -62,9 +61,10 @@
     </div>
 
     <script>
+        
         //Backbone model
         var Contact = Backbone.Model.extend({
-            url: 'http://localhost/WebGL-Contact-List/index.php/api/users/getbyid/1',
+            url: 'http://localhost/WebGL-Contact-List/index.php/api/users',
             defaults:{
                 id:'',
                 username:'',
@@ -76,52 +76,43 @@
             }
         });
 
-        var contact1 = new Contact({
-            contact_id:'1',
-            contact_name:'Thisal Gamage',
-            contact_number:'0775565891',
-            id:'1'
-        });
-        var contact2 = new Contact({
-            contact_id:'2',
-            contact_name:'Hansani Gamage',
-            contact_number:'0715565478',
-            id:'2'
-        });
-
-        var contact3 = new Contact({
-            id: 1
-        });
-        //contact3.fetch({success: function() { alert("Name is " + contact3.get('username'))}});
-        //alert(contact3.get('username'));
-
         //Backbone collection
-        var Users = Backbone.Collection.extend({
+        var NewUsers = Backbone.Collection.extend({
             model: Contact,
             url: 'http://localhost/WebGL-Contact-List/index.php/api/users'
         });
-        var users = new Users();
-        users.fetch({async:false});
-        var firstu = users.at(1);
-        console.log(users.toJSON());
 
-        //Backbone view
-        var WelcomeView = Backbone.View.extend({
-            el: '#welcome',
-            initialize: function (){
-                //this.render();
+        //collection instance
+        var newUsers = new NewUsers();
+
+        //Backbone view - view user
+        var UserView = Backbone.View.extend({
+            model: newUsers, //connects view to the collection object
+            el: $('#displayarea'), //connect view to page area
+
+            initialize: function() {
+                //getting all the users
+                newUsers.fetch({async:false});
+                this.render();
+                //something happened to the newUser collection
+                this.model.on('add', this.render, this);
             },
-            render: function (){
-                //$(this.el).html('Hello');
-            },
-            events: {
-                "click #mybtn" : "displaymsg"
-            },
-            displaymsg: function (){
-                alert("Pressed it!");
+
+            render: function() {
+                var self = this;
+                newUsers.each(function (c) {
+                    var names = "<div class='names'>" + c.get('username') + "</div>";
+                    self.$el.append(names);
+                })
             }
         });
-        var welcome = new WelcomeView();
+        var userView = new UserView();
+
+        // anothr model for add user
+        var AddUser = Backbone.Model.extend({
+            url: 'http://localhost/WebGL-Contact-List/index.php/api/Contacts/storeUser',
+            idAttribute: "id",
+        });
 
         //Backbone view - add user
         var TableView = Backbone.View.extend({
@@ -136,121 +127,20 @@
                 "click #add-contact" : 'adduser'
             },
             adduser: function() {
-                console.log('creating a user');
-                var i = $('.Id-input').val();
-                var n = $('.username-input').val();
-                var f = $('.fname-input').val();
-                var l = $('.lname-input').val();
-                var num = $('.number-input').val();
-                var emal = $('.email-input').val();
-                var pw = $('.password-input').val();
-
-                var newUser = new Contact({
-                    id: i,
-                    username: n,
-                    fname: f,
-                    lname: l,
-                    number: num,
-                    email: emal,
-                    password: pw  
+                //var newUser = new AddUser();
+                var newUser = new AddUser({
+                    'username' : "hanzzzz",
+                    'fname' : "hanzzzz",
+                    'lname' : "hanzzzz",
+                    'number' : "hanzzzz",
+                    'email' : "hanzzzz",
+                    'password' : "hanzzzz"
                 });
-                
-                newUser.save()
+                newUser.save();
+                console.log('added to collection');
             }
         });
         var tableView = new TableView();
-
-        //Backbone collection
-        var NewUsers = Backbone.Collection.extend({
-            model: Contact,
-            url: 'http://localhost/WebGL-Contact-List/index.php/api/users'
-        });
-
-        //collection instance
-        var newUsers = new NewUsers();
-
-        //Backbone view - view user
-        var UserView = Backbone.View.extend({
-            model: NewUsers, //connects view to the collection object
-            el: $('#displayarea'), //connect view to page area
-
-            initialize: function() {
-                //getting all the users
-                newUsers.fetch({async:false});
-                this.render();
-            },
-
-            render: function() {
-                var self = this;
-                newUsers.each(function (c) {
-                    var names = "<div class='names'>" + c.get('username') + "</div>";
-                    self.$el.append(names);
-                })
-            }
-        });
-        var userView = new UserView();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //alert(firstu.get('username')); 
-
-        // //collection instance
-        // var contacts = new Contacts([contact1, contact2]);
-
-        // //Backbone view for one record
-        // var ContactView = Backbone.View.extend({
-        //     model: new Contact(),
-        //     tagName: 'tr',
-        //     initialize: function(){
-        //         this.template = _.template($('.contact-list-template').html());
-        //     },
-        //     render: function(){
-        //         this.$el.html(this.template(this.model.toJSON()));
-        //         return this;
-        //     }
-        // });
-
-        // //Backbone view for all records
-        // var ContactsView = Backbone.View.extend({
-        //     model: contacts,
-        //     el: $('.contacts-list'),
-        //     initialize: function(){
-        //         this.model.on('add', this.render, this);
-        //     },
-        //     render: function(){
-        //         var self = this;
-        //         this.$el.html('');
-        //         _.each(this.model.toArray(), function(contact) {
-        //             self.$el.append((new ContactView({model: contact})).render.$el);
-        //         });
-        //         return this;
-        //     }
-        // });
-        // var contactsView = new ContactsView();
-
-        // $(document).ready(function() {
-        //     $('.add-contact').on('click', function() {
-        //         var contact = new Contact({
-        //             contact_id:$('.Id-input').val(),
-        //             contact_name:$('.name-input').val(),
-        //             contact_number:$('.number-input').val(),
-        //             id: $('.ownerid-input').val()
-        //         });
-        //         console.log(contact.toJSON());
-        //         contacts.add(contact);
-        //     })
-        // })
     </script>
 </body>
 </html>

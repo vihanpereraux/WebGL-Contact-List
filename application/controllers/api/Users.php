@@ -9,25 +9,25 @@ require APPPATH.'libraries/Format.php';
 use chriskacerguis\RestServer\RestController;
 
 // http://localhost/CW02_Test01/index.php/api/contacts
-class Contacts extends RestController
+class Users extends RestController
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('ContactModel');
+        $this->load->model('UserModel');
     }
 
     public function index_get()
     {
-        $contact = new ContactModel;
-        $result = $contact->get_contacts();
+        $user = new UserModel;
+        $result = $user->get_users();
         $this->response($result, 200);
     }
 
-    public function getContactbyId_get($id)
+    public function getUserbyId_get($id)
     {
-        $contact = new ContactModel;
-        $result = $contact->get_contact_by_id($id);
+        $user = new UserModel;
+        $result = $user->get_user_by_id($id);
         if($result != null)
         {
             $this->response($result, 200);
@@ -40,64 +40,70 @@ class Contacts extends RestController
         }
     }
 
-    public function storeContact_post()
+    public function storeUser_post()
     {
-        $contact = new ContactModel;
+        $user = new UserModel;
         $response = [
-            'contact_name' => $this->post('contact_name'),
-            'contact_number' => $this->post('contact_number'),
-            'id' => $this->post('id')
+            'username' => $this->input->post('username'),
+            'fname' => $this->input->post('fname'),
+            'lname' => $this->input->post('lname'),
+            'number' => $this->input->post('number'),
+            'email' => $this->input->post('email'),
+            'password' => $this->input->post('password')
         ];
-        $result = $contact->insert_contact($response);
+        $result = $user->insert_user($response);
         //$this->response($response, 200);
 
         if($result > 0)
         {
             $this->response([
                 'status' => true,
-                'message' => 'New contact added to the db'
+                'message' => 'New user added to the db'
             ], RestController::HTTP_OK);
         }
         else
         {
             $this->response([
                 'status' => false,
-                'message' => 'New contact !added to the db'
+                'message' => 'New user !added to the db'
             ], RestController::HTTP_BAD_REQUEST);
         }
     }
 
-    public function updateContact_put($id)
+    public function updateUser_put($id)
     {
-        $contact = new ContactModel;
+        $user = new UserModel;
         $response = [
-            'contact_name' => $this->put('contact_name'),
-            'contact_number' => $this->put('contact_number'),
-            'id' => $this->put('id')
+            'username' => $this->input->post('username'),
+            'fname' => $this->input->post('fname'),
+            'lname' => $this->input->post('lname'),
+            'number' => $this->input->post('number'),
+            'email' => $this->input->post('email'),
+            'password' => $this->input->post('password')
         ];
-        $result = $contact->update_contact($response, $id);
+        $result = $user->update_user($response, $id);
         //$this->response($response, 200);
 
         if($result > 0)
         {
             $this->response([
                 'status' => true,
-                'message' => 'Contact updated in the db'
+                'message' => 'User updated in the db'
             ], RestController::HTTP_OK);
         }
         else
         {
             $this->response([
                 'status' => false,
-                'message' => 'Contact !updated in the db'
+                'message' => 'User !updated in the db'
             ], RestController::HTTP_BAD_REQUEST);
         }
     }
 
-    public function deleteContact_delete($id)
+    public function deleteUser_delete($id)
     {
-        $contact = new ContactModel;
-        $result = $contact->delete_contact($id);
+        $user = new UserModel;
+        $result = $user->delete_user($id);
         if($result != null)
         {
             $this->response(['message' => 'Completely deleted'
