@@ -5,12 +5,12 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('Contacts');
+		$this->load->view('Contact/Contacts');
 	}
 
 	public function Create()
 	{
-		$this->load->view('CreateContact');
+		$this->load->view('Contact/CreateContact');
 	}
 
 	public function Update()
@@ -19,7 +19,7 @@ class Welcome extends CI_Controller {
 		$data = array(
 			'contact_id' => $data_id
 		);
-		$this->load->view('UpdateContact', $data);	
+		$this->load->view('Contact/UpdateContact', $data);	
 	}
 
 	public function Delete()
@@ -28,6 +28,6 @@ class Welcome extends CI_Controller {
 		$data = array(
 			'contact_id' => $data_id
 		);
-		$this->load->view('DeleteContact', $data);
+		$this->load->view('Contact/DeleteContact', $data);
 	}
 }
