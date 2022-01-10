@@ -98,10 +98,11 @@ class Contacts extends RestController
         }
     }
 
-    public function deleteContact_delete($id)
+    public function deleteContact_delete()
     {
         $contact = new ContactModel;
-        $result = $contact->delete_contact($id);
+        $contact_id = (int)$this->delete('contact_id');
+        $result = $contact->delete_contact($contact_id);
         if($result != null)
         {
             $this->response(['message' => 'Completely deleted'

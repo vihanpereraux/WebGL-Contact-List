@@ -27,21 +27,6 @@
 
         <div id="contactlist"></div>
 
-        <!-- <label for="fname">Name</label>
-        <input type="text" id="fname" name="fname" value=""><br><br>
-
-        <label for="lname">Number</label>
-        <input type="text" id="lname" name="lname"><br><br>
-
-        <label for="lname">Assigned</label>
-        <input type="text" id="lname" name="lname"><br><br>
-
-        <label for="lname">Note</label>
-        <input type="text" id="lname" name="lname"><br><br>
-
-        <label for="lname">Address</label>
-        <input type="text" id="lname" name="lname"><br><br> -->
-
         <div id="postcontact">
             <table class="table">
                 <thead>

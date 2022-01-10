@@ -75,4 +75,4 @@ $route['api/contacts/getbyid/(:any)'] = 'api/Contacts/getContactbyId/$1';
 
 $route['api/contacts/update/(:any)'] = 'api/Contacts/updateContact/$1';
 
-$route['api/contacts/delete/(:any)'] = 'api/Users/deleteContact/$1';
+$route['api/contacts/delete'] = 'api/Users/deleteContact';
