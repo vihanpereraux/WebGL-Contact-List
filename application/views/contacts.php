@@ -14,30 +14,37 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <link rel = "stylesheet" type = "text/css" 
+            href = 'http://localhost/WebGL-Contact-List/styles/contact.css'>
 </head>
 <body>
 
     <!-- Checking the content -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
-                Contacts works!
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla aliquid ex ipsum, voluptatem 
-                quibusdam quis alias deserunt possimus dolor itaque repellendus architecto obcaecati doloribus 
-                quod. Quidem fugit ipsa doloribus reprehenderit!
-            </div>
-
-            <div class="col-lg-6">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla aliquid ex ipsum, voluptatem 
-                quibusdam quis alias deserunt possimus dolor itaque repellendus architecto obcaecati doloribus 
-                quod. Quidem fugit ipsa doloribus reprehenderit!
-            </div>     
+            <div class="col-lg-12">
+                <h4 id="welcome-text">Explore your contacts Vihan Perera !</h4>
+            </div>   
         </div>
     </div>
 
-    <div id="contactlist">
-
-    </div>
+    <table class="container table table-striped">
+        <thead>
+            <tr>
+                <td class="col-3 column-names">Contact name</td>
+                <td class="col-2 column-names">Contact number</td>
+                <td class="col-4 column-names">Address</td>
+                <td class="col-3 column-names action-col">Actions</td>
+            </tr>
+        </thead>
+        <!-- <tbody id="new-contact-list">
+            <tr>
+                
+            </tr>
+        </tbody> -->
+    </table>
+    <div id="contactlist"></div>
 
     <div id="postcontact">
         <table class="table">
@@ -46,16 +53,25 @@
                     <td><input class="form-control" id="contact_name"></td>
                     <td><input class="form-control" id="contact_number"></td>
                     <td><input class="form-control" id="id"></td>
+                    <td><input class="form-control" id="contact_note"></td>
+                    <td><input class="form-control" id="contact_address"></td>
                 </tr>
             </thead>
         </table>
         <button id="add-contact">press me</button>
     </div>
 
-
+    <script type = "text/template" class="contact-list-template">
+        <td><span class="contact_name"><%= contact_name %></span></td>
+        <td><span class="contact_number"><%= contact_number %></span></td>
+        <td><span class="contact_address"><%= contact_address %></span></td>
+        <td>
+            <button class="btn btn-warning edit-contact">Edit</button>
+            <button class="btn btn-danger delete-contact">Delete</button>
+        </td>
+    </script>
 
     <script>
-
         //Backbone model
         var Contact = Backbone.Model.extend({
             url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts',
@@ -65,6 +81,8 @@
                 contact_name:'',
                 contact_number:'',
                 id: '',
+                contact_note:'',
+                contact_address:'',
             }
         });
 
@@ -91,7 +109,22 @@
             render: function () {
                 var self = this;
                 incomingContacts.each(function (c) {
-                    var names = "<div class='names'>" + c.get('contact_name') + "</div>";
+                    var names = 
+                    "<div class='names'>" + 
+                        "<div class='container'>" +
+                            "<div class='row'>" +
+                                "<div class='col-3'>" + c.get('contact_name') + "</div>" + 
+                                "<div class='col-2'>" + c.get('contact_number') + "</div>" +
+                                "<div class='col-4'>" + c.get('contact_address') + "</div>" +
+                                "<div class='col-3' style='text-align: center'>" + 
+                                    "<button class='btn btn-warning' style='margin-right: 10px'>update</button>"+ 
+                                    "<button class='btn btn-danger'>delete</button>"+ 
+                                "</div>" +
+                                "<div class='spacing'></div>" +
+                                "<hr id='devider'>"+
+                            "</div>" +
+                        "</div>" +
+                    "</div>"
                     self.$el.append(names);
                 })
             }
@@ -102,25 +135,43 @@
         var contactListView = new ContactListView();
 
 
+        // Table making
+        // two views are here
+        // for one record
+        var ContactView = Backbone.View.extend({
+            model: new Contact(),
+            tagName: 'tr',
+            initialize: function () {
+                this.template = _.template($(
+                    '.contact-list-template').html(
+                    ));
+            },
+            render: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+            }
+        });
+
+        // for all the records
+        var ContactsView = Backbone.View.extend({
+            model: incomingContacts,
+            el: $('.new-contact-list'),
+            initialize: function () {
+                this.model.on('add', this.render(), this);
+            },
+            render: function () {
+                var self = this;
+                this.$el.html('');
+                _.each(this.model.toArray(), function(c) {
+                    self.$el.append((new ContactView({model: c})).render().$el);
+                });
+            }
+        });
+
+
         //New model for add contact
         var PostContact = Backbone.Model.extend({
             urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/insert',
             idAttribute: "contact_id",
-        });
-
-        var AJAXPostContact = Backbone.Model.extend({
-            save: function (option) {
-                var model = this;
-                $.ajax({
-                    url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/insert',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: model.toJSON(),
-                    success: function (object, status){
-                        console.log('gone!');
-                    }
-                })
-            }
         });
 
         //Backbone view
@@ -140,7 +191,9 @@
                 var ppp = new PostContact({
                     'contact_name': $('#contact_name').val(),
                     'contact_number': $('#contact_number').val(),
-                    'id': $('#id').val()
+                    'id': $('#id').val(),
+                    'contact_note': $('#contact_note').val(),
+                    'contact_address': $('#contact_address').val()
                 })
                 var ss = ppp.toJSON();
                 //console.log(details);
@@ -149,13 +202,8 @@
             } 
         });
 
+        //View instance
         var contactForm = new ContactForm();
-
-        
-
-
-        
-
 
     </script>
 </body>

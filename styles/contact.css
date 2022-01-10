@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+#welcome-text{
+    margin-top: 50px;
+    font-family: Poppins;
+}
+
+table{
+    margin-top: 30px;
+}
+.column-names{
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 16px;
+}
+.action-col{
+    text-align: center;
+}
+
+.names{
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 500;
+}
+
+#devider{
+    color: rgb(175, 175, 175);
+}
+.spacing{
+    margin-top: 15px;
+}
