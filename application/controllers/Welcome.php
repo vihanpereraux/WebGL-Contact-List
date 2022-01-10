@@ -7,4 +7,13 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('contacts');
 	}
+
+	public function Update()
+	{
+		$data_id = $this->uri->segment(3);
+		$data = array(
+			'contact_id' => $data_id
+		);
+		$this->load->view('UpdateContact', $data);	
+	}
 }
