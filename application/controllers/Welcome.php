@@ -40,4 +40,32 @@ class Welcome extends CI_Controller {
 		$this->load->view('Contact/delete_contact', $data);
 	}
 
+	public function Explore()
+	{
+		$this->load->view('Contact/explore_contact');
+	}
+
+	public function Results()
+	{
+		$data_id = $this->uri->segment(3);
+		$data = array(
+			'contact_name' => $data_id
+		);
+		$this->load->view('Contact/results_contact', $data);
+	}
+
+	public function Tags()
+	{
+		$this->load->view('Contact/explore_tag');
+	}
+
+	public function Tag_Results()
+	{
+		$data_id = $this->uri->segment(3);
+		$data = array(
+			'tag_id' => $data_id
+		);
+		$this->load->view('Contact/results_tag', $data);
+	}
+
 }

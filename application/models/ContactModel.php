@@ -19,8 +19,19 @@ class ContactModel extends CI_Model
         return $query->row();
     }
 
+    public function get_contact_by_name($name)
+    {
+        $this->db->where('contact_fname', $name);
+        $query = $this->db->get('contacts');
+        return $query->row();
+    }
+
     public function insert_contact($response)
     {
+        $first_name = $response['contact_fname'];
+        $result = get_contact_by_name($first_name);
+
+        if($result > 0)
         // prebuilt codeigniter query class
         return $this->db->insert('contacts', $response);
     }

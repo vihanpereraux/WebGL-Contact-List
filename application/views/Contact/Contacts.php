@@ -41,9 +41,19 @@
 
     <div id="contactlist"></div>
 
-    <div class="container mb-5 mt-3">
+    <div class="container mt-3">
         <a class="btn btn-success" 
             href="http://localhost/WebGL-Contact-List/index.php/Welcome/Create">Create Contact</a>  
+    </div>
+
+    <div class="container mt-3">
+        <a class="btn btn-success" 
+            href="http://localhost/WebGL-Contact-List/index.php/Welcome/Explore">Explore Contact</a>  
+    </div>
+
+    <div class="container mb-5 mt-3">
+        <a class="btn btn-success" 
+            href="http://localhost/WebGL-Contact-List/index.php/Welcome/Tags">Explore Tag</a>  
     </div>
 
 
@@ -55,11 +65,12 @@
             idAttribute: "contact_id",
             defaults:{
                 contact_id:'',
-                contact_name:'',
+                contact_fname:'',
                 contact_number:'',
                 id: '',
                 contact_note:'',
                 contact_address:'',
+                contact_lname:''
             }
         });
 
@@ -89,12 +100,12 @@
                     "<div class='names'>" + 
                         "<div class='container'>" +
                             "<div class='row'>" +
-                                "<div class='col-3'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/View/" + c.get('contact_id') + "'>" + c.get('contact_name') + "</a></div>" + 
+                                "<div class='col-3'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/View/" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
                                 "<div class='col-2'>" + c.get('contact_number') + "</div>" +
                                 "<div class='col-4'>" + c.get('contact_address') + "</div>" +
                                 "<div class='col-3' style='text-align: center'>" + 
                                     "<button class='btn btn-warning id='update-contact' style='margin-right: 10px'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Update/" + c.get('contact_id') + "'>update</a></button>"+ 
-                                    "<button class='btn btn-danger delete-contact'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Delete/" + c.get('contact_id') + "'>Delete</a></button>"+ 
+                                    "<button class='btn btn-danger delete-contact'></a><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Delete/" + c.get('contact_id') + "'>delete</a></button>"+ 
                                 "</div>" +
                                 "<div class='spacing'></div>" +
                                 "<hr id='devider'>"+
@@ -149,6 +160,19 @@
 
         //View instance
         var contactForm = new ContactForm();
+
+        // //New model for delete contact
+        // var PostContact = Backbone.Model.extend({
+        //     urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/delete/',
+        // });
+
+        // // Delete contact trigger
+        // $(document).ready(function() {
+        //     $('#delete-contact').on('click',
+        //         function() {
+        //             alert('ffff');
+        //     });
+        // });
 
     </script>
 </body>

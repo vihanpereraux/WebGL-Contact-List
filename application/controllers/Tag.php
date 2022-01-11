@@ -11,6 +11,15 @@ class Tag extends CI_Controller
 		);
 		$this->load->view('Tag/assign_tag', $data);
 	}
+
+	public function Delete()
+	{
+		$data_id = $this->uri->segment(3);
+		$data = array(
+			'contact_id' => $data_id
+		);
+		$this->load->view('Tag/delete_tag', $data);
+	}
 }
 
 ?>

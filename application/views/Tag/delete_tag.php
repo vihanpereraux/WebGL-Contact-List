@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Phone Book</title>
+
+    <title>Assign Tags</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.2/underscore-min.js" integrity="sha512-anTuWy6G+usqNI0z/BduDtGWMZLGieuJffU89wUU7zwY/JhmDzFrfIZFA3PY7CEX4qxmn3QXRoXysk6NBh5muQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -19,35 +19,38 @@
 </head>
 <body>
 
-    <!-- Checking the content -->
+    <!-- Create heading -->
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h5 id="welcome-text">Conatct ID is -> <?php echo $contact_id ?></h5>
+                <h5 id="welcome-text">Assign new tags for - <?php echo $contact_id ?></h5>
             </div>   
         </div>
     </div><br>
-    
-    <div class="container"><h4>General Details</h4></div><br>
-    <div id="contactdetails"></div><br>
 
     <div class="container"><h4>Associated Tags</h4></div><br>
     <div id="taglist"></div>
 
-    <!-- Add new tag -->
     <div class="container">
-        <a class="btn btn-success" 
-        href="http://localhost/WebGL-Contact-List/index.php/Tag/Assign/<?php echo $contact_id ?>">
-            Assign new tag</a>
+        <div id="deletetag">
+            <label for="html">Delete Tag ID</label>
+            <select class="form-control" id="tag_id">
+                <option value="1">Home</option>
+                <option value="2">School</option>
+                <option value="3">Office</option>
+                <option value="4">Family</option>
+                <option value="6">Temple</option>
+            </select>    
 
-        <a class="btn btn-danger" 
-        href="http://localhost/WebGL-Contact-List/index.php/Tag/Delete/<?php echo $contact_id ?>">
-            Delete tags</a>
+            <br>
+            <button class="btn btn-danger" id="delete-tag">Delete Tag</button><br>
+
+        </div>
     </div>
 
-    <script>
 
-        //Backbone model
+    <script>
+        // Backbone model
         var Contact = Backbone.Model.extend({
             url: 'http://localhost/WebGL-Contact-List/index.php/api/attachments/<?php echo $contact_id ?>',
             idAttribute: "contact_id",
@@ -101,65 +104,41 @@
         var contactListView = new ContactListView();
 
 
-        // For personal data
-        // Backbone model
-        var SingleContact = Backbone.Model.extend({
-            url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/getbyid/<?php echo $contact_id ?>',
-            idAttribute: "contact_id",
-            defaults:{
-                contact_id:'',
-                contact_name:'',
-                contact_number:'',
-                id: '',
-                contact_note:'',
-                contact_address:'',
-            }
+        //New model for delete tags
+        var AssignTag = Backbone.Model.extend({
+            urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/attachments/delete',
+            idAttribute: "attachment_id",
         });
 
-        //Backbone collection
-        var IncomingSingleContacts = Backbone.Collection.extend({
-            model: SingleContact,
-            url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/getbyid/<?php echo $contact_id ?>',
-        });
-
-        //Collection instance
-        var incomingSingleContacts = new IncomingSingleContacts();
-
-        //Backbone view
-        var SingleContactListView = Backbone.View.extend({
-            model: incomingSingleContacts,
-            el: '#contactdetails',
-
-            initialize: function () {
-                incomingSingleContacts.fetch({async:false});
-                console.log(incomingSingleContacts.toJSON());
-                this.render();
+        //Backbone view for assign tags
+        var ContactForm = Backbone.View.extend({
+            el: '#deletetag',
+            initialize: function() {
+                
             },
-            render: function () {
-                var self = this;
-                incomingSingleContacts.each(function (c) {
-                    var names = 
-                    "<div class='names'>" + 
-                        "<div class='container'>" +
-                            "<div class='row'>" +
-                                "<div class='12'> Name : " + c.get('contact_name') + "</div>" + 
-                                "<div class='12'> Number : " + c.get('contact_number') + "</div>" +
-                                "<div class='12'> Saved Under : " + c.get('id') + "</div>" +
-                                "<div class='12'> Address : " + c.get('contact_address') + "</div>" +
-                                "<div class='12'> Note : " + c.get('contact_note') + "</div>" +
-                                "<div class='spacing'></div>" +
-                            "</div>" +
-                        "</div>" +
-                    "</div>"
-                    self.$el.append(names);
+            render: function() {
+                return this;
+            },
+            events: {
+                "click #delete-tag" : 'deletetag'
+            },
+            deletetag: function () {
+                var assignedTag = new AssignTag({
+                    'contact_id': <?php echo $contact_id; ?>, 
+                    'tag_id': $('#tag_id').val(),
                 })
-            },
+                var ppp = assignedTag.toJSON();
+                //console.log(details);
+                assignedTag.destroy(ppp);
+                console.log(ppp.task_id);
+            } 
         });
 
-        //View instance
-        var singleContactListView = new SingleContactListView();
+        // Instance for view
+        var contactForm = new ContactForm();
 
     </script>
+
 
 </body>
 </html>

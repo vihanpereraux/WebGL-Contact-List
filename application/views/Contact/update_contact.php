@@ -31,7 +31,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td><input class="form-control" id="contact_name" value="Swag"></td>
+                        <td><input class="form-control" id="contact_fname" value="Swag"></td>
+                        <td><input class="form-control" id="contact_sname" value="Swag"></td>
                         <td><input class="form-control" id="contact_number"></td>
                         <td><input class="form-control" id="id"></td>
                         <td><input class="form-control" id="contact_note"></td>
@@ -99,7 +100,8 @@
                         "</div>" +
                     "</div>"
                     self.$el.append(names);
-                    document.getElementById("contact_name").value = c.get('contact_name');
+                    document.getElementById("contact_fname").value = c.get('contact_fname');
+                    document.getElementById("contact_sname").value = c.get('contact_sname');
                     document.getElementById("contact_number").value = c.get('contact_number');
                     document.getElementById("id").value = c.get('id');
                     document.getElementById("contact_note").value = c.get('contact_note');
@@ -135,7 +137,8 @@
             },
             addcontact: function () {
                 var ppp = new PostContact();
-                ppp.set('contact_name', document.getElementById("contact_name").value);
+                ppp.set('contact_fname', document.getElementById("contact_fname").value);
+                ppp.set('contact_sname', document.getElementById("contact_sname").value);
                 ppp.set('contact_number', document.getElementById("contact_number").value);
                 ppp.set('id', document.getElementById("id").value);
                 ppp.set('contact_note', document.getElementById("contact_note").value);

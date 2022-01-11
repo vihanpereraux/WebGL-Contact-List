@@ -75,7 +75,7 @@ $route['api/contacts/getbyid/(:any)'] = 'api/Contacts/getContactbyId/$1';
 
 $route['api/contacts/update/(:any)'] = 'api/Contacts/updateContact/$1';
 
-$route['api/contacts/delete'] = 'api/Users/deleteContact';
+$route['api/contacts/delete/(:any)'] = 'api/Users/deleteContact/$1';
 
 
 // Tags routes
@@ -101,4 +101,12 @@ $route['api/attachments/insert'] = 'api/Attachments/storeAttachment';
 
 $route['api/attachments/update/(:any)'] = 'api/Attachments/updateAttachment/$1';
 
-$route['api/attachments/delete/(:any)'] = 'api/Attachments/deleteAttachment/$1';
+$route['api/attachments/delete'] = 'api/Attachments/deleteAttachment';
+
+
+// Explore routes
+$route['api/attachments'] = 'api/Explore/index';
+
+$route['api/attachments/getbyname/(:any)'] = 'api/Explore/getContactsByName/$1';
+
+$route['api/attachments/getbytagid/(:any)'] = 'api/Explore/getContactsByTag/$1';

@@ -40,17 +40,13 @@ class AttachmentModel extends CI_Model
         return $this->db->update('attachments', $response);
     }
 
-    public function delete_attachment($id)
-    {
-        $get_query = $this->db->get('attachments');
-        if($get_query->num_rows() >= $id)
-        {
-            $query = $this->db->delete('attachments', ['attachment_id' => $id]);
-            return $query;
-        }
-        else
-        {
-            return null;
-        }
+    public function delete_attachment($response)
+    {   
+        $recieved_contact_id = $response['contact_id'];
+        $recieved_tag_id = $response['tag_id'];
+        $query = $this->db->query("DELETE 
+                                   FROM attachments 
+                                   WHERE contact_id = '$recieved_contact_id' 
+                                   AND tag_id = '$recieved_tag_id' ;");
     }
 }

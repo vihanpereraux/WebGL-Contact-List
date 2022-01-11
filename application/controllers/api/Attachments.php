@@ -99,20 +99,29 @@ class Attachments extends RestController
         }
     }
 
-    public function deleteAttachment_delete($id)
+    public function deleteAttachment_delete()
     {
         $attachment = new AttachmentModel;
-        $result = $attachment->delete_attachment($id);
-        if($result != null)
-        {
-            $this->response(['message' => 'Completely deleted'
-            ], RestController::HTTP_OK);
-        }
-        else
-        {
-            $this->response(['message' => 'Completely !deleted'
-            ], RestController::HTTP_BAD_REQUEST);
-        }
+        $response = [
+            'contact_id' => $this->delete('contact_id'),
+            'tag_id' => $this->delete('tag_id'),
+        ];
+        $result = $attachment->delete_attachment($response);
+
+
+
+        // $attachment = new AttachmentModel;
+        // $result = $attachment->delete_attachment($id);
+        // if($result != null)
+        // {
+        //     $this->response(['message' => 'Completely deleted'
+        //     ], RestController::HTTP_OK);
+        // }
+        // else
+        // {
+        //     $this->response(['message' => 'Completely !deleted'
+        //     ], RestController::HTTP_BAD_REQUEST);
+        // }
     }
 
 
