@@ -5,6 +5,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class AttachmentModel extends CI_Model
 {
+
+    public function get_all_attachments()
+    {
+        $query = $this->db->query("SELECT * from attachments");
+        return $query->result_array();
+    }
+
     public function get_attachments($contact_id)
     {
         $query = $this->db->query("SELECT attachments.attachment_id, tags.tag_name

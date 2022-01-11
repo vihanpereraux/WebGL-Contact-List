@@ -64,6 +64,7 @@
 
 
     <script>
+        
         //New model for add contact
         var PostContact = Backbone.Model.extend({
             urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/insert',

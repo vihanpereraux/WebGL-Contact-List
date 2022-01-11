@@ -23,14 +23,22 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h4 id="welcome-text">Explore this contact - <?php echo $contact_id ?> !</h4>
+                <h5 id="welcome-text">Conatct ID is -> <?php echo $contact_id ?></h5>
             </div>   
         </div>
-    </div>
+    </div><br>
+    
+    <div class="container"><h4>General Details</h4></div><br>
+    <div id="contactdetails"></div><br>
 
+    <div class="container"><h4>Associated Tags</h4></div><br>
     <div id="taglist"></div>
 
-    <div id="contactdetails"></div>
+    <!-- Add new tag -->
+    <div class="container"><a class="btn btn-success" 
+        href="http://localhost/WebGL-Contact-List/index.php/Tag/Assign/<?php echo $contact_id ?>">
+            Assign new tag</a>
+    </div>
 
     <script>
 
@@ -74,15 +82,8 @@
                     "<div class='names'>" + 
                         "<div class='container'>" +
                             "<div class='row'>" +
-                                "<div class='col-3'>" + c.get('attachment_id') + "</div>" + 
-                                "<div class='col-2'>" + c.get('contact_id') + "</div>" +
                                 "<div class='col-4'>" + c.get('tag_name') + "</div>" +
-                                "<div class='col-3' style='text-align: center'>" + 
-                                    "<button class='btn btn-warning id='update-contact' style='margin-right: 10px'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Update/" + c.get('contact_id') + "'>update</a></button>"+ 
-                                    "<button class='btn btn-danger delete-contact'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Delete/" + c.get('contact_id') + "'>Delete</a></button>"+ 
-                                "</div>" +
                                 "<div class='spacing'></div>" +
-                                "<hr id='devider'>"+
                             "</div>" +
                         "</div>" +
                     "</div>"
@@ -136,15 +137,12 @@
                     "<div class='names'>" + 
                         "<div class='container'>" +
                             "<div class='row'>" +
-                                "<div class='col-3'>" + c.get('contact_name') + "</div>" + 
-                                "<div class='col-2'>" + c.get('contact_number') + "</div>" +
-                                "<div class='col-4'>" + c.get('contact_address') + "</div>" +
-                                "<div class='col-3' style='text-align: center'>" + 
-                                    "<button class='btn btn-warning id='update-contact' style='margin-right: 10px'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Update/" + c.get('contact_id') + "'>update</a></button>"+ 
-                                    "<button class='btn btn-danger delete-contact'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Delete/" + c.get('contact_id') + "'>Delete</a></button>"+ 
-                                "</div>" +
+                                "<div class='12'> Name : " + c.get('contact_name') + "</div>" + 
+                                "<div class='12'> Number : " + c.get('contact_number') + "</div>" +
+                                "<div class='12'> Saved Under : " + c.get('id') + "</div>" +
+                                "<div class='12'> Address : " + c.get('contact_address') + "</div>" +
+                                "<div class='12'> Note : " + c.get('contact_note') + "</div>" +
                                 "<div class='spacing'></div>" +
-                                "<hr id='devider'>"+
                             "</div>" +
                         "</div>" +
                     "</div>"

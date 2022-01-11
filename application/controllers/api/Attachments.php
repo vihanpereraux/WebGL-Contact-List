@@ -17,6 +17,13 @@ class Attachments extends RestController
         $this->load->model('AttachmentModel');
     }
 
+    public function getAllAttachments_get()
+    {
+        $attachment = new AttachmentModel;
+        $result = $attachment->get_all_attachments();
+        $this->response($result, 200);
+    }
+
     public function index_get($contact_id)
     {
         $attachment = new AttachmentModel;
@@ -40,11 +47,11 @@ class Attachments extends RestController
         }
     }
 
-    public function storeAttachment_post($contact_id)
+    public function storeAttachment_post()
     {
         $attachment = new AttachmentModel;
         $response = [
-            'contact_id' => $contact_id,
+            'contact_id' => $this->post('contact_id'),
             'tag_id' => $this->post('tag_id')
         ];
         $result = $attachment->insert_attachment($response);

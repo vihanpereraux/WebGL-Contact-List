@@ -91,11 +91,13 @@ $route['api/tags/delete/(:any)'] = 'api/Tags/deleteTag/$1';
 
 
 // Attachments routes
-$route['api/attachments'] = 'api/Attachments/index';
+$route['api/attachments'] = 'api/Attachments/getAllAttachments';
+
+$route['api/attachments/(:any)'] = 'api/Attachments/index/$1';
 // :any means accepts letters and numbers both 
 $route['api/attachments/getbyid/(:any)'] = 'api/Attachments/getAttachmentbyId/$1';
 
-$route['api/attachments/insert/(:any)'] = 'api/Attachments/storeAttachment/$1';
+$route['api/attachments/insert'] = 'api/Attachments/storeAttachment';
 
 $route['api/attachments/update/(:any)'] = 'api/Attachments/updateAttachment/$1';
 
