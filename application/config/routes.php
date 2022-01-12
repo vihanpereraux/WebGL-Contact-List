@@ -73,7 +73,7 @@ $route['api/contacts/insert'] = 'api/Contacts/storeContact';
 // :any means accepts letters and numbers both 
 $route['api/contacts/getbyid/(:any)'] = 'api/Contacts/getContactbyId/$1';
 
-$route['api/contacts/update/(:any)'] = 'api/Contacts/updateContact/$1';
+$route['api/contacts/update'] = 'api/Contacts/updateContact';
 
 $route['api/contacts/delete/(:any)'] = 'api/Users/deleteContact/$1';
 

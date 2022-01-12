@@ -70,9 +70,10 @@ class Contacts extends RestController
         }
     }
 
-    public function updateContact_put($id)
+    public function updateContact_put()
     {
         $contact = new ContactModel;
+        $id = (int) $this->put('contact_id');
         $response = [
             'contact_fname' => $this->put('contact_fname'),
             'contact_number' => $this->put('contact_number'),

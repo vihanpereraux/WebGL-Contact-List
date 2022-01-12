@@ -41,20 +41,80 @@
 
     <div id="contactlist"></div>
 
-    <div class="container mt-3">
-        <a class="btn btn-success" 
-            href="http://localhost/WebGL-Contact-List/index.php/Welcome/Create">Create Contact</a>  
+    <!-- Form for creating contacts -->
+    <div class="container">
+        <div id="postcontact">
+            <form id="myForm">
+                <thead>
+                    <tr>
+                        <td>
+                            <label for="html">Contact Id</label>
+                            <input class="form-control" id="contact_id">
+                        </td>
+                        <td>
+                            <label for="html">First Name</label>
+                            <input class="form-control" id="contact_fname">
+                        </td>
+                        <td>
+                            <label for="html">Surname</label>
+                            <input class="form-control" id="contact_sname">
+                        </td>
+                        <td>
+                            <label for="html">Number</label>
+                            <input class="form-control" id="contact_number">
+                        </td>
+                        <!-- <td>
+                            <label for="html">Assigned User</label>
+                            <input class="form-control" id="id">
+                        </td> -->
+                        <td>
+                            <label for="html">Note</label>
+                            <input class="form-control" id="contact_note">
+                        </td>
+                        <td>
+                            <label for="html">Address</label>
+                            <input class="form-control" id="contact_address">
+                        </td>
+                    </tr>
+                </thead>
+            </form>
+            <button class="btn btn-warning  " id="add-contact">Create Contact</button>
+            <!-- <button id="update-contact">update me</button> -->
+        </div>
     </div>
 
-    <div class="container mt-3">
+    <!-- <div class="container mt-3">
+        <a class="btn btn-success" 
+            href="http://localhost/WebGL-Contact-List/index.php/Welcome/Create">Create Contact</a>  
+    </div> -->
+
+    <div class="container mt-5">
+        <label for="html">Which name you wanna update ?</label>
+        <input class="form-control" id="req-id">
+        <div id="updatecontact">
+            <button class="btn btn-primary mt-2" id="update-contact">update</button>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div id="updatedcontact">
+            <button class="btn btn-primary mt-2" id="send-update">Update Now</button>
+        </div>
+    </div>
+
+    <div class="container mt-5">
         <a class="btn btn-success" 
             href="http://localhost/WebGL-Contact-List/index.php/Welcome/Explore">Explore Contact</a>  
     </div>
 
-    <div class="container mb-5 mt-3">
+    <div class="container mb-5 mt-5">
         <a class="btn btn-success" 
             href="http://localhost/WebGL-Contact-List/index.php/Welcome/Tags">Explore Tag</a>  
     </div>
+
+    <script>
+        
+    </script>
 
 
     <script>
@@ -91,10 +151,12 @@
             initialize: function () {
                 incomingContacts.fetch({async:false});
                 console.log(incomingContacts.toJSON());
+                this.listenTo(incomingContacts, 'add remove', this.render);
                 this.render();
             },
             render: function () {
                 var self = this;
+                self.$el.empty();
                 incomingContacts.each(function (c) {
                     var names = 
                     "<div class='names'>" + 
@@ -104,7 +166,7 @@
                                 "<div class='col-2'>" + c.get('contact_number') + "</div>" +
                                 "<div class='col-4'>" + c.get('contact_address') + "</div>" +
                                 "<div class='col-3' style='text-align: center'>" + 
-                                    "<button class='btn btn-warning id='update-contact' style='margin-right: 10px'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Update/" + c.get('contact_id') + "'>update</a></button>"+ 
+                                    "<button class='btn btn-warning id='update-contact' style='margin-right: 10px'>update</button>"+ 
                                     "<button class='btn btn-danger delete-contact'></a><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Delete/" + c.get('contact_id') + "'>delete</a></button>"+ 
                                 "</div>" +
                                 "<div class='spacing'></div>" +
@@ -120,9 +182,13 @@
         //View instance
         var contactListView = new ContactListView();
 
-        //New model for add contact
+
+        // -------------------------------Upload contact------------------------------ //
+
+
+        // Model for add contact
         var PostContact = Backbone.Model.extend({
-            urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/insert',
+            url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/insert',
             idAttribute: "contact_id",
         });
 
@@ -137,42 +203,144 @@
             },
             events: {
                 "click #add-contact" : 'addcontact',
-                "click #delete-contact" : 'delete',
-            },
-            delete: function () {
-                console.log('deleted');
             },
             addcontact: function () {
-                //var ppp = new AJAXPostContact();
                 var ppp = new PostContact({
-                    'contact_name': $('#contact_name').val(),
+                    'contact_fname': $('#contact_fname').val(),
                     'contact_number': $('#contact_number').val(),
                     'id': $('#id').val(),
                     'contact_note': $('#contact_note').val(),
-                    'contact_address': $('#contact_address').val()
+                    'contact_address': $('#contact_address').val(),
+                    'contact_sname': $('#contact_sname').val()
                 })
                 var ss = ppp.toJSON();
-                //console.log(details);
+                incomingContacts.add(ppp);
+                console.log(incomingContacts.toJSON());
                 ppp.save(ss);
                 console.log("ss");
-            } 
+            }
         });
 
         //View instance
         var contactForm = new ContactForm();
 
-        // //New model for delete contact
-        // var PostContact = Backbone.Model.extend({
-        //     urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/delete/',
-        // });
+            
+        // -------------------------------Update contact------------------------------ //
 
-        // // Delete contact trigger
-        // $(document).ready(function() {
-        //     $('#delete-contact').on('click',
-        //         function() {
-        //             alert('ffff');
-        //     });
-        // });
+
+        //id checking before updating
+        var reqId;
+        var reqIdSuper;
+        var fullname;
+        var index;
+        var put_id;
+        $(document).ready(function() {
+            $('#update-contact').on('click',
+                function() {
+                    reqId = document.getElementById("req-id").value.toLowerCase();
+                    for (let i = 0; i < incomingContacts.toJSON().length; i++) 
+                    {
+                        //fullname = (incomingContacts.toJSON()[i].contact_fname + incomingContacts.toJSON()[i].contact_sname);
+                        if(reqId == incomingContacts.toJSON()[i].contact_fname.toLowerCase()
+                        || reqId == incomingContacts.toJSON()[i].contact_fname.toLowerCase() + " " + incomingContacts.toJSON()[i].contact_sname.toLowerCase())
+                        {
+                            reqIdSuper = i;
+                            put_id = incomingContacts.toJSON()[i].contact_id;  
+                        }
+                    }
+                    // for validations
+                    //alert(reqIdSuper);
+                    console.log(reqId);
+                    console.log(incomingContacts.toJSON().length);
+                    alert(put_id);
+                    //document.getElementById("myForm2").reset()
+            });
+        });
+
+        $(document).ready(function() {
+            $('#send-update').on('click',
+                function() {
+                    alert(put_id);
+            });
+        });
+
+        
+
+        //Backbone view
+        var ContactForm2 = Backbone.View.extend({
+            el: '#updatecontact',
+            initialize: function() {
+                
+            },
+            render: function() {
+                return this;
+            },
+            events: {
+                "click #update-contact" : 'updatecontact',
+            },
+            updatecontact: function () {
+                console.log('update clicked');
+                document.getElementById("contact_fname").value = incomingContacts.at(reqIdSuper).get('contact_fname');
+                document.getElementById("contact_sname").value = incomingContacts.at(reqIdSuper).get('contact_sname');
+                document.getElementById("contact_number").value = incomingContacts.at(reqIdSuper).get('contact_number');
+                document.getElementById("contact_id").value = incomingContacts.at(reqIdSuper).get('contact_id');
+                document.getElementById("contact_note").value = incomingContacts.at(reqIdSuper).get('contact_note');
+                document.getElementById("contact_address").value = incomingContacts.at(reqIdSuper).get('contact_address');
+
+                put_id = document.getElementById("contact_id").value;
+            }
+        });
+
+        //View instance
+        var contactForm = new ContactForm2();
+
+
+        //New model for update contact
+        var UpdateContact = Backbone.Model.extend({
+            url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/update/',
+        });
+
+        //Backbone view - update
+        var ContactForm = Backbone.View.extend({
+            el: '#updatedcontact',
+            initialize: function() {
+
+            },
+            events: {
+                "click #send-update" : 'sendupdate',
+
+            },
+            sendupdate: function () {
+                var ppp = new UpdateContact();
+                ppp.set('contact_id', document.getElementById("contact_id").value);
+                ppp.set('contact_fname', document.getElementById("contact_fname").value);
+                ppp.set('contact_sname', document.getElementById("contact_sname").value);
+                ppp.set('contact_number', document.getElementById("contact_number").value);
+                ppp.set('id', '1');
+                ppp.set('contact_note', document.getElementById("contact_note").value);
+                ppp.set('contact_address', document.getElementById("contact_address").value);
+
+                var ss = ppp.toJSON();
+                //console.log(details);
+                ppp.save(null, {
+                    success: function(response){
+                        document.getElementById("myForm").reset();
+                        console.log('updated');
+                        var firstView1 = new ContactListView();
+                        firstView1.render();
+                    },
+                    error: function(response){
+                        console.log('! updated');
+                    }
+                });
+
+                console.log(ss);
+            },
+        });
+
+        //View instance
+        var contactForm = new ContactForm();
+
 
     </script>
 </body>
