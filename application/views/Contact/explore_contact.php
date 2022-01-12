@@ -44,71 +44,81 @@
 
     <script>
         
+        
+
+        
+
         function myFunction() {
-            //alert('ssss');
+
+            alert('ssss');
             $fname = document.getElementById("fname").value;
-            window.location.href = "http://localhost/WebGL-Contact-List/index.php/Welcome/Results/" + $fname;
-        }
 
-        //Backbone model
-        var Contact = Backbone.Model.extend({
-            url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts',
-            idAttribute: "contact_id",
-            defaults:{
-                contact_id:'',
-                contact_name:'',
-                contact_number:'',
-                id: '',
-                contact_note:'',
-                contact_address:'',
-            }
-        });
 
-        //Backbone collection
-        var IncomingContacts = Backbone.Collection.extend({
-            model: Contact,
-            url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts',
-        });
+            //Backbone model
+            var Contact = Backbone.Model.extend({
+                url: 'http://localhost/WebGL-Contact-List/index.php/api/Explore/getContactsByName/' + $fname,
+                idAttribute: "contact_id",
+                defaults:{
+                    contact_id:'',
+                    contact_name:'',
+                    contact_number:'',
+                    id: '',
+                    contact_note:'',
+                    contact_address:'',
+                }
+            });
 
-        //Collection instance
-        var incomingContacts = new IncomingContacts();
+            //Backbone collection
+            var IncomingContacts = Backbone.Collection.extend({
+                model: Contact,
+                url: 'http://localhost/WebGL-Contact-List/index.php/api/Explore/getContactsByName/' + $fname,
+            });
 
-        //Backbone view
-        var ContactListView = Backbone.View.extend({
-            model: incomingContacts,
-            el: '#contactlist',
+            //Collection instance
+            var incomingContacts = new IncomingContacts();
 
-            initialize: function () {
-                incomingContacts.fetch({async:false});
-                console.log(incomingContacts.toJSON());
-                this.render();
-            },
-            render: function () {
-                var self = this;
-                incomingContacts.each(function (c) {
-                    var names = 
-                    "<div class='names'>" + 
-                        "<div class='container'>" +
-                            "<div class='row'>" +
-                                "<div class='col-3'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/View/" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
-                                "<div class='col-2'>" + c.get('contact_number') + "</div>" +
-                                "<div class='col-4'>" + c.get('contact_address') + "</div>" +
-                                "<div class='col-3' style='text-align: center'>" + 
-                                    "<button class='btn btn-warning id='update-contact' style='margin-right: 10px'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Update/" + c.get('contact_id') + "'>update</a></button>"+ 
-                                    "<button class='btn btn-danger delete-contact'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Delete/" + c.get('contact_id') + "'>Delete</a></button>"+ 
+            //Backbone view
+            var ContactListView = Backbone.View.extend({
+                model: incomingContacts,
+                el: '#contactlist',
+
+                initialize: function () {
+                    incomingContacts.fetch({async:false});
+                    console.log(incomingContacts.toJSON());
+                    this.render();
+                },
+                render: function () {
+                    var self = this;
+                    self.$el.empty();
+                    incomingContacts.each(function (c) {
+                        var names = 
+                        "<div class='names'>" + 
+                            "<div class='container'>" +
+                                "<div class='row'>" +
+                                    "<div class='col-3'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/View/" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
+                                    "<div class='col-2'>" + c.get('contact_number') + "</div>" +
+                                    "<div class='col-4'>" + c.get('contact_address') + "</div>" +
+                                    "<div class='col-3' style='text-align: center'>" + 
+                                        "<button class='btn btn-warning id='update-contact' style='margin-right: 10px'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Update/" + c.get('contact_id') + "'>update</a></button>"+ 
+                                        "<button class='btn btn-danger delete-contact'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Delete/" + c.get('contact_id') + "'>Delete</a></button>"+ 
+                                    "</div>" +
+                                    "<div class='spacing'></div>" +
+                                    "<hr id='devider'>"+
                                 "</div>" +
-                                "<div class='spacing'></div>" +
-                                "<hr id='devider'>"+
                             "</div>" +
-                        "</div>" +
-                    "</div>"
-                    self.$el.append(names);
-                })
-            },
-        });
+                        "</div>"
+                        self.$el.append(names);
+                    })
+                }
+            });
+            var contactListView = new ContactListView();
+        }
+        
+
+        
 
         //View instance
-        //var contactListView = new ContactListView();
+        
 
         //--------------------------------------------------------------------------//
 

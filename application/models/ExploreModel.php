@@ -12,9 +12,9 @@ class ExploreModel extends CI_Model
         return $query->result_array();
     }
 
-    public function get_contacts_by_name($contact_name)
+    public function get_contacts_by_name($contact_sname)
     {
-        $query = $this->db->query("SELECT * From contacts WHERE contact_sname = '$contact_name'");
+        $query = $this->db->query("SELECT * From contacts WHERE contact_sname = '$contact_sname'");
         return $query->result_array();
     }
 

@@ -27,10 +27,11 @@ class Explore extends RestController
     }
 
     // Getting contacts by name
-    public function getContactsByName_get($contact_name)
+    public function getContactsByName_get($contact_sname)
     {
         $explore = new ExploreModel;
-        $result = $explore->get_contacts_by_name($contact_name);
+        //$contact_sname = $this->post('contact_sname');
+        $result = $explore->get_contacts_by_name($contact_sname);
         $this->response($result, 200);
     }
 
