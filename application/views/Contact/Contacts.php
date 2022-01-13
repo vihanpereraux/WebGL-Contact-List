@@ -48,8 +48,8 @@
                 <thead>
                     <tr>
                         <td>
-                            <label for="html">Contact Id</label>
-                            <input class="form-control" id="contact_id">
+                            <!-- <label for="html">Contact Id</label> -->
+                            <input type="hidden" class="form-control" id="contact_id">
                         </td>
                         <td>
                             <label for="html">First Name</label>
@@ -112,9 +112,15 @@
             href="http://localhost/WebGL-Contact-List/index.php/Welcome/Tags">Explore Tag</a>  
     </div>
 
-    <script>
-        
-    </script>
+    <!-- <div class="container mt-5">
+        <label for="html">Which name you wanna delete ?</label>
+        <input class="form-control" id="delete-id">
+        <div id="deletecontact">
+            <a class="btn btn-warning" id="send-delete" onclick="myFunction()">Delete</a>
+        </div>
+    </div> -->
+
+    
 
 
     <script>
@@ -167,7 +173,7 @@
                                 "<div class='col-4'>" + c.get('contact_address') + "</div>" +
                                 "<div class='col-3' style='text-align: center'>" + 
                                     "<button class='btn btn-warning id='update-contact' style='margin-right: 10px'>update</button>"+ 
-                                    "<button class='btn btn-danger delete-contact'></a><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Delete/" + c.get('contact_id') + "'>delete</a></button>"+ 
+                                    "<button class='btn btn-danger id='delete-contact'>delete</button>"+ 
                                 "</div>" +
                                 "<div class='spacing'></div>" +
                                 "<hr id='devider'>"+
@@ -217,6 +223,7 @@
                 incomingContacts.add(ppp);
                 console.log(incomingContacts.toJSON());
                 ppp.save(ss);
+                document.getElementById("myForm").reset();
                 console.log("ss");
             }
         });
@@ -234,6 +241,7 @@
         var fullname;
         var index;
         var put_id;
+        const inputField = document.getElementById("req-id");
         $(document).ready(function() {
             $('#update-contact').on('click',
                 function() {
@@ -253,6 +261,7 @@
                     console.log(reqId);
                     console.log(incomingContacts.toJSON().length);
                     alert(put_id);
+                    inputField.value = " ";
                     //document.getElementById("myForm2").reset()
             });
         });
@@ -341,6 +350,78 @@
         //View instance
         var contactForm = new ContactForm();
 
+
+        // -------------------------------Delete contact------------------------------ //
+        
+
+        function myFunction() {
+            alert('goda');
+        
+            //id checking before updating
+            var reqId;
+            var reqIdSuper;
+            var fullname;
+            var index;
+            $delete_id = '';
+            $(document).ready(function() {
+                $('#delete-contact').on('click',
+                    function() {
+                        deletename = document.getElementById("delete-id").value.toLowerCase();
+                        for (let i = 0; i < incomingContacts.toJSON().length; i++) 
+                        {
+                            //fullname = (incomingContacts.toJSON()[i].contact_fname + incomingContacts.toJSON()[i].contact_sname);
+                            if(deletename == incomingContacts.toJSON()[i].contact_fname.toLowerCase() + " " + incomingContacts.toJSON()[i].contact_sname.toLowerCase())
+                            {
+                                //reqIdSuper = i;
+                                delete_id = incomingContacts.toJSON()[i].contact_id;  
+                            }
+                        }
+                        // for validations
+                        console.log(reqId);
+                        console.log(incomingContacts.toJSON().length);
+                        alert(delete_id);
+                });
+            });
+
+            //New model for update contact
+            var DeleteContact = Backbone.Model.extend({
+                url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/delete/' + $delete_id,
+            });
+
+            //Backbone view - update
+            var DeleteForm = Backbone.View.extend({
+                el: '#deletecontact',
+                initialize: function() {
+
+                },
+                events: {
+                    "click #send-delete" : 'senddelete',
+                },
+                senddelete: function () {
+                    var ppp = new DeleteContact({
+                        'contact_id': document.getElementById("delete-id").value,
+                    });
+                    var ss = ppp.toJSON();
+                    //console.log(details);
+                    ppp.destroy(null, {
+                        success: function(response){
+                            document.getElementById("myForm").reset();
+                            console.log('deleted');
+                            var firstView1 = new ContactListView();
+                            firstView1.render();
+                        },
+                        error: function(response){
+                            console.log('! deleted');
+                        }
+                    });
+
+                    console.log(ss);
+                },
+            });
+
+            //View instance
+            var deleteForm = new DeleteForm();
+        }
 
     </script>
 </body>

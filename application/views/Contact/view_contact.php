@@ -34,15 +34,48 @@
     <div class="container"><h4>Associated Tags</h4></div><br>
     <div id="taglist"></div>
 
-    <!-- Add new tag -->
     <div class="container">
-        <a class="btn btn-success" 
-        href="http://localhost/WebGL-Contact-List/index.php/Tag/Assign/<?php echo $contact_id ?>">
-            Assign new tag</a>
+        <div class="row">
+            <div class="col-lg-12">
+                <h5 id="welcome-text">Assign new tags for - <?php echo $contact_id ?></h5>
+            </div>   
+        </div>
+    </div><br>
 
-        <a class="btn btn-danger" 
-        href="http://localhost/WebGL-Contact-List/index.php/Tag/Delete/<?php echo $contact_id ?>">
-            Delete tags</a>
+    <div class="container">
+        <div id="assigntag">
+            <label for="html">Tag ID</label>
+            <select class="form-control" id="tag_id">
+                <option value="1">Home</option>
+                <option value="2">School</option>
+                <option value="3">Office</option>
+                <option value="4">Family</option>
+                <option value="6">Temple</option>
+            </select>    
+
+            <br>
+            <button class="btn btn-success" id="asign-tag">Assign Tags</button>
+            <a class="btn btn-danger" 
+                href="http://localhost/WebGL-Contact-List/index.php/Tag/Delete/<?php echo $contact_id ?>">
+                Delete tags</a>
+        </div>
+    </div><br><br>
+
+    <!-- Delete tag -->
+    <div class="container">
+        <div id="deletetag">
+            <label for="html">Delete Tag</label>
+            <select class="form-control" id="delete_tag_id">
+                <option value="1">Home</option>
+                <option value="2">School</option>
+                <option value="3">Office</option>
+                <option value="4">Family</option>
+                <option value="6">Temple</option>
+            </select>
+
+            <br>
+            <button class="btn btn-danger" id="delete-tag">Delete Tags</button>
+        </div>
     </div>
 
     <script>
@@ -53,11 +86,12 @@
             idAttribute: "contact_id",
             defaults:{
                 contact_id:'',
-                contact_name:'',
+                contact_fname:'',
                 contact_number:'',
                 id: '',
                 contact_note:'',
                 contact_address:'',
+                contact_sname:'',
             }
         });
 
@@ -78,10 +112,12 @@
             initialize: function () {
                 incomingContacts.fetch({async:false});
                 console.log(incomingContacts.toJSON());
+                this.listenTo(incomingContacts, 'add remove', this.render);
                 this.render();
             },
             render: function () {
                 var self = this;
+                self.$el.empty();
                 incomingContacts.each(function (c) {
                     var names = 
                     "<div class='names'>" + 
@@ -106,14 +142,7 @@
         var SingleContact = Backbone.Model.extend({
             url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/getbyid/<?php echo $contact_id ?>',
             idAttribute: "contact_id",
-            defaults:{
-                contact_id:'',
-                contact_name:'',
-                contact_number:'',
-                id: '',
-                contact_note:'',
-                contact_address:'',
-            }
+            
         });
 
         //Backbone collection
@@ -142,7 +171,7 @@
                     "<div class='names'>" + 
                         "<div class='container'>" +
                             "<div class='row'>" +
-                                "<div class='12'> Name : " + c.get('contact_name') + "</div>" + 
+                                "<div class='12'> Name : " + c.get('contact_fname') + " " + c.get('contact_sname') + "</div>" + 
                                 "<div class='12'> Number : " + c.get('contact_number') + "</div>" +
                                 "<div class='12'> Saved Under : " + c.get('id') + "</div>" +
                                 "<div class='12'> Address : " + c.get('contact_address') + "</div>" +
@@ -158,6 +187,112 @@
 
         //View instance
         var singleContactListView = new SingleContactListView();
+
+
+        // ----------------------------------Adding new tags----------------------------------//
+
+        //New model for assign tags
+        var AssignTag = Backbone.Model.extend({
+            urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/Attachments/storeAttachment',
+            idAttribute: "attachment_id",
+        });
+
+        //Backbone view for assign tags
+        var ContactForm = Backbone.View.extend({
+            el: '#assigntag',
+            initialize: function() {
+                
+            },
+            render: function() {
+                return this;
+            },
+            events: {
+                "click #asign-tag" : 'assigntag'
+            },
+            assigntag: function () {
+
+                if($('#tag_id').val() == 1){
+                    var assignedTag = new AssignTag({
+                    'contact_id': <?php echo $contact_id; ?>, 
+                    'tag_id': $('#tag_id').val(),
+                    'tag_name': 'Home',
+                    })
+                }
+                if($('#tag_id').val() == 2){
+                    var assignedTag = new AssignTag({
+                    'contact_id': <?php echo $contact_id; ?>, 
+                    'tag_id': $('#tag_id').val(),
+                    'tag_name': 'School',
+                    })
+                }
+                if($('#tag_id').val() == 3){
+                    var assignedTag = new AssignTag({
+                    'contact_id': <?php echo $contact_id; ?>, 
+                    'tag_id': $('#tag_id').val(),
+                    'tag_name': 'Office',
+                    })
+                }
+                if($('#tag_id').val() == 4){
+                    var assignedTag = new AssignTag({
+                    'contact_id': <?php echo $contact_id; ?>, 
+                    'tag_id': $('#tag_id').val(),
+                    'tag_name': 'Family',
+                    })
+                }
+                if($('#tag_id').val() == 6){
+                    var assignedTag = new AssignTag({
+                    'contact_id': <?php echo $contact_id; ?>, 
+                    'tag_id': $('#tag_id').val(),
+                    'tag_name': 'Temple',
+                    })
+                }
+                var ppp = assignedTag.toJSON();
+                assignedTag.save(ppp);
+                incomingContacts.add(assignedTag);
+                console.log(incomingContacts.toJSON());
+            } 
+        });
+
+        // Instance for view
+        var contactForm = new ContactForm();
+
+
+        // ----------------------------------Adding new tags----------------------------------//
+
+
+        // Model to delete data
+        var DeleteTag = Backbone.Model.extend({
+            urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/Attachments/deleteAttachment',
+            idAttribute: "attachment_id",
+        });
+
+        //Backbone view
+        var DeleteTagView = Backbone.View.extend({
+            el: '#deletetag',
+
+            initialize: function () {
+                
+            },
+            render: function () {
+                
+            },
+            events: {
+                "click #delete-tag" : 'deletetag',
+            },
+            deletetag: function () {
+                var deletedTag = new DeleteTag({
+                    'contact_id': <?php echo $contact_id; ?>, 
+                    'tag_id': $('#delete_tag_id').val(),
+                })
+                var ppp = deletedTag.toJSON();
+                deletedTag.destroy();
+                var firstView1 = new ContactListView();
+                firstView1.render();
+            } 
+        });
+
+        //View instance
+        var deleteTagView = new DeleteTagView();
 
     </script>
 
