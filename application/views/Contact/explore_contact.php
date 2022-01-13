@@ -33,7 +33,7 @@
             <label for="fname">First name:</label>
             <input type="text" id="fname" name="fname" value="Gamage">
 
-            <a class="btn btn-warning" onclick="myFunction()">Search</a>
+            <a class="btn btn-warning" onclick="exploreFunction()">Search</a>
         </form>
     </div>
 
@@ -44,15 +44,9 @@
 
     <script>
         
-        
+        function exploreFunction() {
 
-        
-
-        function myFunction() {
-
-            alert('ssss');
             $fname = document.getElementById("fname").value;
-
 
             //Backbone model
             var Contact = Backbone.Model.extend({
@@ -114,58 +108,6 @@
             var contactListView = new ContactListView();
         }
         
-
-        
-
-        //View instance
-        
-
-        //--------------------------------------------------------------------------//
-
-        //New model for serch contact
-        // var SearchContact = Backbone.Model.extend({
-        //     urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/attachments/getbyname/Gamage',
-        //     idAttribute: "contact_id",
-        //     defaults:{
-        //         contact_id:'',
-        //         contact_name:'',
-        //         contact_number:'',
-        //         id: '',
-        //         contact_note:'',
-        //         contact_address:'',
-        //     }
-        // });
-
-        // //Backbone collection
-        // var IncomingSearchedContacts = Backbone.Collection.extend({
-        //     model: SearchContact,
-        //     url: 'http://localhost/WebGL-Contact-List/index.php/api/attachments/getbyname/Gamage',
-        // });
-
-        // var incomingSearchedContacts = new IncomingSearchedContacts();
-
-        // //Backbone view
-        // var ContactForm = Backbone.View.extend({
-        //     el: '#sercontactlist',
-        //     initialize: function() {
-                
-        //     },
-        //     render: function() {
-        //         //return this;
-        //     },
-        //     events: {
-        //         "click #explore-btn" : 'explorecontact',
-        //     },
-        //     explorecontact: function () {
-        //         //var surname = document.getElementById("fname").value);
-        //         incomingSearchedContacts.fetch({async:false});
-        //         console.log(incomingSearchedContacts.toJSON());
-        //         this.render(); 
-        //     } 
-        // });
-
-        // //View instance
-        // var contactForm = new ContactForm();
 
     </script>
 

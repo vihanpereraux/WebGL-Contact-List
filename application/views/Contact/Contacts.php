@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Phone Book</title>
+    <title>My Phone Book</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.2/underscore-min.js" integrity="sha512-anTuWy6G+usqNI0z/BduDtGWMZLGieuJffU89wUU7zwY/JhmDzFrfIZFA3PY7CEX4qxmn3QXRoXysk6NBh5muQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -19,7 +19,7 @@
 </head>
 <body>
 
-    <!-- Checking the content -->
+    <!-- Welcome text -->
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -28,6 +28,7 @@
         </div>
     </div>
 
+    <!-- Table to display contacts -->
     <table class="container table table-striped">
         <thead>
             <tr>
@@ -39,10 +40,11 @@
         </thead>
     </table>
 
+    <!-- Conatact list appends here -->
     <div id="contactlist"></div>
 
     <!-- Form for creating contacts -->
-    <div class="container">
+    <div class="container mt-4">
         <div id="postcontact">
             <form id="myForm">
                 <thead>
@@ -63,10 +65,6 @@
                             <label for="html">Number</label>
                             <input class="form-control" id="contact_number">
                         </td>
-                        <!-- <td>
-                            <label for="html">Assigned User</label>
-                            <input class="form-control" id="id">
-                        </td> -->
                         <td>
                             <label for="html">Note</label>
                             <input class="form-control" id="contact_note">
@@ -82,21 +80,17 @@
                     </tr>
                 </thead>
             </form>
-            <button class="btn btn-warning  " id="add-contact">Create Contact</button>
-            <!-- <button id="update-contact">update me</button> -->
+            <button class="btn btn-success mt-4" id="add-contact">Create Contact</button>
         </div>
     </div>
 
-    <!-- <div class="container mt-3">
-        <a class="btn btn-success" 
-            href="http://localhost/WebGL-Contact-List/index.php/Welcome/Create">Create Contact</a>  
-    </div> -->
 
+    <!-- Requested name for update -->
     <div class="container mt-5">
         <label for="html">Which name you wanna update ?</label>
         <input class="form-control" id="req-id">
         <div id="updatecontact">
-            <button class="btn btn-primary mt-2" id="update-contact">update</button>
+            <button class="btn btn-primary mt-2" id="update-contact">I wanna update this</button>
         </div>
     </div>
 
@@ -116,15 +110,6 @@
             href="http://localhost/WebGL-Contact-List/index.php/Welcome/Tags">Explore Tag</a>  
     </div>
 
-    <!-- <div class="container mt-5">
-        <label for="html">Which name you wanna delete ?</label>
-        <input class="form-control" id="delete-id">
-        <div id="deletecontact">
-            <a class="btn btn-warning" id="send-delete" onclick="myFunction()">Delete</a>
-        </div>
-    </div> -->
-
-    
 
 
     <script>
@@ -259,27 +244,16 @@
                             put_id = incomingContacts.toJSON()[i].contact_id;  
                         }
                     }
-                    // for validations
-                    //alert(reqIdSuper);
                     console.log(reqId);
                     console.log(incomingContacts.toJSON().length);
                     alert(put_id);
                     inputField.value = " ";
-                    //document.getElementById("myForm2").reset()
-            });
-        });
-
-        $(document).ready(function() {
-            $('#send-update').on('click',
-                function() {
-                    alert(put_id);
             });
         });
 
         
-
         //Backbone view
-        var ContactForm2 = Backbone.View.extend({
+        var UpdateForm = Backbone.View.extend({
             el: '#updatecontact',
             initialize: function() {
                 
@@ -305,7 +279,7 @@
         });
 
         //View instance
-        var contactForm = new ContactForm2();
+        var updateForm = new UpdateForm();
 
 
         //New model for update contact
@@ -335,7 +309,6 @@
                 ppp.set('contact_email', document.getElementById("contact_email").value);
 
                 var ss = ppp.toJSON();
-                //console.log(details);
                 ppp.save(null, {
                     success: function(response){
                         document.getElementById("myForm").reset();
@@ -347,7 +320,6 @@
                         console.log('! updated');
                     }
                 });
-
                 console.log(ss);
             },
         });
@@ -374,10 +346,8 @@
                         deletename = document.getElementById("delete-id").value.toLowerCase();
                         for (let i = 0; i < incomingContacts.toJSON().length; i++) 
                         {
-                            //fullname = (incomingContacts.toJSON()[i].contact_fname + incomingContacts.toJSON()[i].contact_sname);
                             if(deletename == incomingContacts.toJSON()[i].contact_fname.toLowerCase() + " " + incomingContacts.toJSON()[i].contact_sname.toLowerCase())
                             {
-                                //reqIdSuper = i;
                                 delete_id = incomingContacts.toJSON()[i].contact_id;  
                             }
                         }
@@ -419,14 +389,13 @@
                             console.log('! deleted');
                         }
                     });
-
                     console.log(ss);
                 },
             });
-
             //View instance
             var deleteForm = new DeleteForm();
         }
+
 
     </script>
 </body>

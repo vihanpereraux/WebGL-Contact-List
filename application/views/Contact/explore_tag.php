@@ -39,7 +39,7 @@
                 <option value="6">Temple</option>
             </select><br>
 
-            <a class="btn btn-warning" onclick="myFunction()">Search</a>
+            <a class="btn btn-warning" onclick="exploreFunction()">Search</a>
         </form>
     </div>
 
@@ -50,10 +50,9 @@
 
     <script>
 
-        function myFunction() {
-            //alert('ssss');
+        function exploreFunction() {
+
             $tag_id = document.getElementById("tag_id").value;
-            //window.location.href = "http://localhost/WebGL-Contact-List/index.php/Welcome/Tag_Results/" + $tag_id;
 
             var Contact = Backbone.Model.extend({
                 url: 'http://localhost/WebGL-Contact-List/index.php/api/attachments/getbytagid/' + $tag_id,

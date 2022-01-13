@@ -46,6 +46,7 @@
         <div id="assigntag">
             <label for="html">Tag ID</label>
             <select class="form-control" id="tag_id">
+                <option disabled selected="selected" value>Select</option>
                 <option value="1">Home</option>
                 <option value="2">School</option>
                 <option value="3">Office</option>
@@ -63,22 +64,30 @@
 
     <!-- Delete tag -->
     <div class="container">
-        <div id="deletetag">
-            <label for="html">Delete Tag</label>
-            <select class="form-control" id="delete_tag_id">
-                <option value="1">Home</option>
-                <option value="2">School</option>
-                <option value="3">Office</option>
-                <option value="4">Family</option>
-                <option value="6">Temple</option>
-            </select>
+        <form id="myForm">
+            <div id="deletetag">
+                <label for="html">Delete Tag</label>
+                <select class="form-control" id="delete_tag_id">
+                    <option value="1">Home</option>
+                    <option value="2">School</option>
+                    <option value="3">Office</option>
+                    <option value="4">Family</option>
+                    <option value="6">Temple</option>
+                </select>
 
-            <br>
-            <button class="btn btn-danger" id="delete-tag">Delete Tags</button>
-        </div>
+                <br>
+                <button class="btn btn-danger" id="delete-tag">Delete Tags</button>
+            </div>
+        </form>
     </div>
 
     <script>
+
+        $("#reset").on("click", function () {
+            $('#asign-tag').prop('selected', function() {
+                return this.defaultSelected;
+            });
+        });
 
         //Backbone model
         var Contact = Backbone.Model.extend({
@@ -105,7 +114,7 @@
         var incomingContacts = new IncomingContacts();
 
         //Backbone view
-        var ContactListView = Backbone.View.extend({
+        var TagListView = Backbone.View.extend({
             model: incomingContacts,
             el: '#taglist',
 
@@ -134,15 +143,14 @@
         });
 
         //View instance
-        var contactListView = new ContactListView();
+        var tagListView = new TagListView();
 
 
         // For personal data
         // Backbone model
         var SingleContact = Backbone.Model.extend({
             url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/getbyid/<?php echo $contact_id ?>',
-            idAttribute: "contact_id",
-            
+            idAttribute: "contact_id", 
         });
 
         //Backbone collection
@@ -192,6 +200,7 @@
 
         // ----------------------------------Adding new tags----------------------------------//
 
+
         //New model for assign tags
         var AssignTag = Backbone.Model.extend({
             urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/Attachments/storeAttachment',
@@ -212,44 +221,15 @@
             },
             assigntag: function () {
 
-                if($('#tag_id').val() == 1){
-                    var assignedTag = new AssignTag({
+                var assignedTag = new AssignTag({
                     'contact_id': <?php echo $contact_id; ?>, 
                     'tag_id': $('#tag_id').val(),
-                    'tag_name': 'Home',
-                    })
-                }
-                if($('#tag_id').val() == 2){
-                    var assignedTag = new AssignTag({
-                    'contact_id': <?php echo $contact_id; ?>, 
-                    'tag_id': $('#tag_id').val(),
-                    'tag_name': 'School',
-                    })
-                }
-                if($('#tag_id').val() == 3){
-                    var assignedTag = new AssignTag({
-                    'contact_id': <?php echo $contact_id; ?>, 
-                    'tag_id': $('#tag_id').val(),
-                    'tag_name': 'Office',
-                    })
-                }
-                if($('#tag_id').val() == 4){
-                    var assignedTag = new AssignTag({
-                    'contact_id': <?php echo $contact_id; ?>, 
-                    'tag_id': $('#tag_id').val(),
-                    'tag_name': 'Family',
-                    })
-                }
-                if($('#tag_id').val() == 6){
-                    var assignedTag = new AssignTag({
-                    'contact_id': <?php echo $contact_id; ?>, 
-                    'tag_id': $('#tag_id').val(),
-                    'tag_name': 'Temple',
-                    })
-                }
+                })
+
                 var ppp = assignedTag.toJSON();
-                assignedTag.save(ppp);
                 incomingContacts.add(assignedTag);
+                assignedTag.save(ppp);
+                document.getElementById("myForm").reset();
                 console.log(incomingContacts.toJSON());
             } 
         });
@@ -295,7 +275,7 @@
         //View instance
         var deleteTagView = new DeleteTagView();
 
-    </script>
 
+    </script>
 </body>
 </html>

@@ -14,7 +14,7 @@ class AttachmentModel extends CI_Model
 
     public function get_attachments($contact_id)
     {
-        $query = $this->db->query("SELECT attachments.attachment_id, tags.tag_name
+        $query = $this->db->query("SELECT tags.tag_name
                                    FROM attachments
                                    INNER JOIN tags ON attachments.tag_id = tags.tag_id
                                    WHERE attachments.contact_id = $contact_id;");
