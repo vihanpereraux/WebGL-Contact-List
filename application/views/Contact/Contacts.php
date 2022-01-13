@@ -34,7 +34,7 @@
                 <td class="col-3 column-names">Contact name</td>
                 <td class="col-2 column-names">Contact number</td>
                 <td class="col-4 column-names">Address</td>
-                <td class="col-3 column-names action-col">Actions</td>
+                <td class="col-3 column-names action-col">Email</td>
             </tr>
         </thead>
     </table>
@@ -74,6 +74,10 @@
                         <td>
                             <label for="html">Address</label>
                             <input class="form-control" id="contact_address">
+                        </td>
+                        <td>
+                            <label for="html">Email</label>
+                            <input class="form-control" id="contact_email">
                         </td>
                     </tr>
                 </thead>
@@ -136,7 +140,8 @@
                 id: '',
                 contact_note:'',
                 contact_address:'',
-                contact_lname:''
+                contact_lname:'',
+                contact_email:'',
             }
         });
 
@@ -168,13 +173,10 @@
                     "<div class='names'>" + 
                         "<div class='container'>" +
                             "<div class='row'>" +
-                                "<div class='col-3'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/View/" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
+                                "<div class='col-3' id='full-name'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/View/" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
                                 "<div class='col-2'>" + c.get('contact_number') + "</div>" +
                                 "<div class='col-4'>" + c.get('contact_address') + "</div>" +
-                                "<div class='col-3' style='text-align: center'>" + 
-                                    "<button class='btn btn-warning id='update-contact' style='margin-right: 10px'>update</button>"+ 
-                                    "<button class='btn btn-danger id='delete-contact'>delete</button>"+ 
-                                "</div>" +
+                                "<div class='col-3'>" + c.get('contact_email') + "</div>" +
                                 "<div class='spacing'></div>" +
                                 "<hr id='devider'>"+
                             "</div>" +
@@ -217,7 +219,8 @@
                     'id': $('#id').val(),
                     'contact_note': $('#contact_note').val(),
                     'contact_address': $('#contact_address').val(),
-                    'contact_sname': $('#contact_sname').val()
+                    'contact_sname': $('#contact_sname').val(),
+                    'contact_email': $('#contact_email').val()
                 })
                 var ss = ppp.toJSON();
                 incomingContacts.add(ppp);
@@ -295,6 +298,7 @@
                 document.getElementById("contact_id").value = incomingContacts.at(reqIdSuper).get('contact_id');
                 document.getElementById("contact_note").value = incomingContacts.at(reqIdSuper).get('contact_note');
                 document.getElementById("contact_address").value = incomingContacts.at(reqIdSuper).get('contact_address');
+                document.getElementById("contact_email").value = incomingContacts.at(reqIdSuper).get('contact_email');
 
                 put_id = document.getElementById("contact_id").value;
             }
@@ -328,6 +332,7 @@
                 ppp.set('id', '1');
                 ppp.set('contact_note', document.getElementById("contact_note").value);
                 ppp.set('contact_address', document.getElementById("contact_address").value);
+                ppp.set('contact_email', document.getElementById("contact_email").value);
 
                 var ss = ppp.toJSON();
                 //console.log(details);

@@ -176,6 +176,7 @@
                                 "<div class='12'> Saved Under : " + c.get('id') + "</div>" +
                                 "<div class='12'> Address : " + c.get('contact_address') + "</div>" +
                                 "<div class='12'> Note : " + c.get('contact_note') + "</div>" +
+                                "<div class='12'> Email : " + c.get('contact_email') + "</div>" +
                                 "<div class='spacing'></div>" +
                             "</div>" +
                         "</div>" +

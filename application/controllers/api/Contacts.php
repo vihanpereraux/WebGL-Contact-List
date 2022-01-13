@@ -49,7 +49,8 @@ class Contacts extends RestController
             'id' => $this->post('id'),
             'contact_note' => $this->post('contact_note'),
             'contact_address' => $this->post('contact_address'),
-            'contact_sname' => $this->post('contact_sname')
+            'contact_sname' => $this->post('contact_sname'),
+            'contact_email' => $this->post('contact_email')
         ];
         $result = $contact->insert_contact($response);
         //$this->response($response, 200);
@@ -80,7 +81,8 @@ class Contacts extends RestController
             'id' => $this->put('id'),
             'contact_note' => $this->put('contact_note'),
             'contact_address' => $this->put('contact_address'),
-            'contact_sname' => $this->put('contact_sname')
+            'contact_sname' => $this->put('contact_sname'),
+            'contact_email' => $this->put('contact_email')
         ];
         $result = $contact->update_contact($response, $id);
         //$this->response($response, 200);
