@@ -15,7 +15,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel = "stylesheet" type = "text/css" 
-        href = 'http://localhost/WebGL-Contact-List/styles/contact.css'>
+        href = 'http://localhost/WebGL-Contact-List/styles/view_styles.css'>
 </head>
 <body>
 
@@ -23,47 +23,108 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h5 id="welcome-text">Conatct ID is -> <?php echo $contact_id ?></h5>
+                <p id="explore-heading">Explore Your 
+                    <span style="color: #FF543E">Contact</span> &nbsp : ) </p>
             </div>   
         </div>
     </div><br>
-    
-    <div class="container"><h4>General Details</h4></div><br>
-    <div id="contactdetails"></div><br>
 
-    <div class="container"><h4>Associated Tags</h4></div><br>
-    <div id="taglist"></div>
+
+    <div class="container section-01-devider">
+        <div class="row">
+            <div class="col-lg-6">
+                <p class="mt-5 devider-01-txt">CONTACT &nbsp DETAILS</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="mt-5 devider-01-txt-right">ASSIGNED &nbsp TAGS &nbsp & &nbsp DETAILS</p>
+            </div>
+        </div>
+        <div id="devider-01"></div>
+    </div>
+
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <h5 id="welcome-text">Assign new tags for - <?php echo $contact_id ?></h5>
-            </div>   
+            <div class="col-lg-"></div>
+            <div class="col-lg-5 my-auto">
+                <img class="mx-auto d-block" style="width: 50%;" src="http://localhost/WebGL-Contact-List/img/Intro gif.gif">
+            </div>
+            <div class="col-lg-7">
+                <!-- <div class="container"><h4>General Details</h4></div> -->
+                <div id="contactdetails"></div>
+            </div>
+            <!-- <div class="col-lg-1"></div> -->
         </div>
-    </div><br>
+    </div>
+
+
+    <div class="container section-02-devider">
+        <div class="row">
+            <div class="col-lg-6">
+                <p class="mt-5 devider-01-txt">TAGS</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="mt-5 devider-01-txt-right">ADD NEW TAGS</p>
+            </div>
+        </div>
+        <div id="devider-01"></div>
+    </div>
+
 
     <div class="container">
-        <div id="assigntag">
-            <label for="html">Tag ID</label>
-            <select class="form-control" id="tag_id">
-                <option disabled selected="selected" value>Select</option>
-                <option value="1">Home</option>
-                <option value="2">School</option>
-                <option value="3">Office</option>
-                <option value="4">Family</option>
-                <option value="6">Temple</option>
-            </select>    
+        <div class="row">
 
-            <br>
-            <button class="btn btn-success" id="asign-tag">Assign Tags</button>
-            <a class="btn btn-danger" 
-                href="http://localhost/WebGL-Contact-List/index.php/Tag/Delete/<?php echo $contact_id ?>">
-                Delete tags</a>
+            <div class="col-lg-6 my-auto">
+                <img class="mx-auto d-block bullet-section" style="width: 48%;" 
+                    src="http://localhost/WebGL-Contact-List/img/tagmanageimg.png" alt="">
+            </div>
+
+            <div class="col-lg-6" style="padding-left: 35px">
+                <div id="taglist"></div>   
+
+                <div class="">
+                    <div id="assigntag">
+                    <label class="form-label">Assign new tags</label>
+                    <select class="form-control custom-input" id="tag_id">
+                        <option disabled selected="selected" value>Select</option>
+                        <option value="1">Home</option>
+                        <option value="2">School</option>
+                        <option value="3">Office</option>
+                        <option value="4">Family</option>
+                        <option value="6">Temple</option>
+                    </select>    
+                    <br>
+                    <button class="btn create-btn" id="asign-tag">
+                        <p>+ Assign Tags</p></button>
+                </div><br>
+
+                <form id="myForm">
+                    <div id="deletetag">
+                        <label class="form-label">Remove tags</label>
+                        <select class="form-control custom-input" id="delete_tag_id">
+                            <option disabled selected="selected" value>Select</option>
+                            <option value="1">Home</option>
+                            <option value="2">School</option>
+                            <option value="3">Office</option>
+                            <option value="4">Family</option>
+                            <option value="6">Temple</option>
+                        </select>
+
+                        <br>
+                        <button class="btn delete-btn" id="delete-tag">
+                            <p>- Delete Tags</p></button>
+                    </div>
+                </form>
+                <div style="margin-top: 100px"></div>
+            </div>
+
         </div>
-    </div><br><br>
+    </div>
+
+
 
     <!-- Delete tag -->
-    <div class="container">
+    <!-- <div class="container">
         <form id="myForm">
             <div id="deletetag">
                 <label for="html">Delete Tag</label>
@@ -79,7 +140,7 @@
                 <button class="btn btn-danger" id="delete-tag">Delete Tags</button>
             </div>
         </form>
-    </div>
+    </div> -->
 
     <script>
 
@@ -130,7 +191,7 @@
                 incomingContacts.each(function (c) {
                     var names = 
                     "<div class='names'>" + 
-                        "<div class='container'>" +
+                        "<div class='all-tags'>" +
                             "<div class='row'>" +
                                 "<div class='col-4'>" + c.get('tag_name') + "</div>" +
                                 "<div class='spacing'></div>" +
@@ -179,12 +240,24 @@
                     "<div class='names'>" + 
                         "<div class='container'>" +
                             "<div class='row'>" +
-                                "<div class='12'> Name : " + c.get('contact_fname') + " " + c.get('contact_sname') + "</div>" + 
-                                "<div class='12'> Number : " + c.get('contact_number') + "</div>" +
-                                "<div class='12'> Saved Under : " + c.get('id') + "</div>" +
-                                "<div class='12'> Address : " + c.get('contact_address') + "</div>" +
-                                "<div class='12'> Note : " + c.get('contact_note') + "</div>" +
-                                "<div class='12'> Email : " + c.get('contact_email') + "</div>" +
+                                "<p class='view-page-title'> Name </p>" +
+                                "<p class='view-page-data'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</p>" + 
+
+                                "<p class='view-page-title'> Number </p>" +
+                                "<p class='view-page-data'>" + c.get('contact_number') + "</p>" +
+
+                                "<p class='view-page-title'> Belongs to </p>" +
+                                "<p class='view-page-data'>" + "Vihan Perera" + "</p>" +
+
+                                "<p class='view-page-title'> Address </p>" +
+                                "<p class='view-page-data'>" + c.get('contact_address') + "</p>" +
+
+                                "<p class='view-page-title'> Special Notes </p>" +
+                                "<p class='view-page-data'>" + c.get('contact_note') + "</p>" +
+
+                                "<p class='view-page-title'> Email </p>" +
+                                "<p class='view-page-data'>" + c.get('contact_email') + "</p>" +
+
                                 "<div class='spacing'></div>" +
                             "</div>" +
                         "</div>" +
@@ -229,6 +302,7 @@
                 var ppp = assignedTag.toJSON();
                 incomingContacts.add(assignedTag);
                 assignedTag.save(ppp);
+                alert('New tag added !');
                 document.getElementById("myForm").reset();
                 console.log(incomingContacts.toJSON());
             } 

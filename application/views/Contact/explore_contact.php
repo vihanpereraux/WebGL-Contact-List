@@ -15,28 +15,64 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel = "stylesheet" type = "text/css" 
-        href = 'http://localhost/WebGL-Contact-List/styles/contact.css'>
+        href = 'http://localhost/WebGL-Contact-List/styles/explore_styles.css'>
 </head>
 <body>
 
     <!-- Checking the content -->
     <div class="container">
         <div class="row">
+
             <div class="col-lg-12">
-                <h4 id="welcome-text">Search your contacts Vihan Perera !</h4>
-            </div>   
+                <p id="explore-heading">Search Your 
+                    <span style="color: #FF543E">Contacts</span> &nbsp <span style="color: #282D98">: )</span></p>
+            </div> 
+            
         </div>
-    </div><br><br>
+    </div><br>
 
-    <div class="container">
-        <form>
-            <label for="fname">First name:</label>
-            <input type="text" id="fname" name="fname" value="Gamage">
 
-            <a class="btn btn-warning" onclick="exploreFunction()">Search</a>
-        </form>
+    <div class="container section-01-devider">
+        <div class="row">
+            <div class="col-lg-6">
+                <p class="mt-5 devider-01-txt">SEARCH RESULTS</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="mt-5 devider-01-txt-right">SEARCH BY NAMES</p>
+            </div>
+        </div>
+        <div id="devider-01"></div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <form>
+                    <label class="form-label">Search by surname</label>
+                    <input type="text" class="form-control custom-input" id="fname" name="fname" value="Gamage">
+
+                    <a class="btn search-btn" onclick="exploreFunction()"><p>Search</p></a>
+                </form>
+            </div>
+            <div class="col-lg-4"></div>
+
+        </div>
+    </div>
+
+
+    <table class="container" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <td class="col-3 column-names">Contacts</td>
+                <td class="col-2 column-names">Number</td>
+                <td class="col-4 column-names">Address</td>
+                <td class="col-3 column-names action-col">Email</td>
+            </tr>
+        </thead>
+    </table>
+    
     <div id="contactlist"></div>
 
     <div id="sercontactlist"></div>
@@ -50,7 +86,8 @@
 
             //Backbone model
             var Contact = Backbone.Model.extend({
-                url: 'http://localhost/WebGL-Contact-List/index.php/api/Explore/getContactsByName/' + $fname,
+
+                url: '<?php echo base_url('index.php/api/Explore/getContactsByName/'); ?>' + $fname,
                 idAttribute: "contact_id",
                 defaults:{
                     contact_id:'',
@@ -65,7 +102,7 @@
             //Backbone collection
             var IncomingContacts = Backbone.Collection.extend({
                 model: Contact,
-                url: 'http://localhost/WebGL-Contact-List/index.php/api/Explore/getContactsByName/' + $fname,
+                url: '<?php echo base_url('index.php/api/Explore/getContactsByName/'); ?>' + $fname,
             });
 
             //Collection instance
@@ -87,17 +124,15 @@
                     incomingContacts.each(function (c) {
                         var names = 
                         "<div class='names'>" + 
-                            "<div class='container'>" +
-                                "<div class='row'>" +
-                                    "<div class='col-3'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/View/" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
-                                    "<div class='col-2'>" + c.get('contact_number') + "</div>" +
+                            "<div class='container' style='padding-left: 10px; padding-left: 10px;'>" +
+                                "<div class='row singe-record'>" +
+                                    "<div class='col-3' id='full-name'><a href = '<?php echo base_url('index.php/Welcome/View/'); ?>" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
+                                    "<div class='col-2' style='color: ; font-weight: 600;'>" + "0" +c.get('contact_number') + "</div>" +
                                     "<div class='col-4'>" + c.get('contact_address') + "</div>" +
-                                    "<div class='col-3' style='text-align: center'>" + 
-                                        "<button class='btn btn-warning id='update-contact' style='margin-right: 10px'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Update/" + c.get('contact_id') + "'>update</a></button>"+ 
-                                        "<button class='btn btn-danger delete-contact'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/Delete/" + c.get('contact_id') + "'>Delete</a></button>"+ 
-                                    "</div>" +
+                                    "<div class='col-2'>" + c.get('contact_email') + "</div>" +
+                                    "<div class='col-1'><img style='width: 30px;' src='<?php echo base_url('img/Arrow.png'); ?>'></div>" +
                                     "<div class='spacing'></div>" +
-                                    "<hr id='devider'>"+
+                                    // "<hr id='devider'>"+
                                 "</div>" +
                             "</div>" +
                         "</div>"

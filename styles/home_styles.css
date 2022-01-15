@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+
+body{
+    background-color: white;
+}
+
+
+
+#devider-01{
+    background-color: #000000;
+    height: 1px;
+    margin-top: 20px;
+}
+
+.devider-01-txt{
+    font-family: Nunito;
+    font-weight: 600;
+    margin-bottom: -10px;
+    font-size: 12px;
+    color: #000000
+}
+.devider-01-txt-right{
+    font-family: Nunito;
+    font-weight: 600;
+    margin-bottom: -10px;
+    font-size: 12px;
+    color: #F46C5A;
+    text-align: right;   
+}
+
+.section-01-devider{
+    margin-top: 60px;
+}
+
+.section-one{
+    margin-top: 60px;
+}
+
+#welcome-text{
+    padding-top: 10px;
+    font-family: Nunito;
+    font-weight: 600;
+    font-size: 29px;
+    line-height: 1.6;
+}
+
+
+table{
+    margin-top: 60px;
+    border:none;
+}
+.column-names{
+    font-family: Nunito;
+    font-weight: 600;
+    font-size: 18px;
+    color: #FF543E;
+    padding-left: 15px;
+}
+.names{
+    font-size: 16px;
+    font-family: Nunito;
+    color: #303030;
+    font-weight: 500;
+}
+#full-name a{
+    text-decoration: none;
+    color: #282D98;
+    font-weight: 600;
+}
+.singe-record{
+    background-color: #FBFBFB;
+    margin-top: 12px;
+    height: 73px;
+    padding-top: 25px;
+    border-radius: 10px;
+    font-family: Nunito;
+}
+#devider{
+    color: rgb(175, 175, 175);
+}
+.spacing{
+    margin-top: 15px;
+}
+
+
+
+.section-02-devider{
+    margin-top: 60px;
+}
+
+#form-heading{
+    font-family: Nunito;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.6;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    padding-left: 25px;
+}
+
+#myForm{
+    padding-left: 25px;
+}
+
+.form-label{
+    color: #282D98;
+    font-family: Nunito;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.form-control:focus {
+    border-color: #FF543E;
+    box-shadow: none;
+}
+
+.custom-input{
+    width: 72%;
+    height: 50px;
+    border-radius: 12px;
+    font-family: Nunito;
+    font-weight: 600; 
+    border-color: #D2D2D2; 
+    font-size: 16px; 
+}
+
+.create-btn{
+    background-color: black;
+    width: 69%;
+    height: 55px;
+    border-radius: 12px;
+    margin-left: 25px;
+}
+.create-btn p{
+    color: white;
+    padding-top: 8px;
+    font-family: Nunito;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+
+
+.section-03-devider{
+    margin-top: 70px;
+}
+
+#update-description{
+    font-family: Nunito;
+    font-weight: 600;
+    margin-top: 50px;
+    width: 85%;
+    line-height: 1.9;
+}
+
+.manage-img{
+    margin-left: 8%;
+}
+
+#update-form{
+    padding-left: 25px;
+}
+
+.get-name-option{
+    font-family: Nunito;
+    font-weight: 600;
+    color: #FF543E;
+    text-decoration: none;
+    text-align: center;
+}
+
+.update-btn{
+    background-color: black;
+    width: 69%;
+    height: 55px;
+    border-radius: 12px;
+    margin-left: 25px;
+}
+.update-btn p{
+    color: white;
+    padding-top: 8px;
+    font-family: Nunito;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.bullet-section{
+    margin-top: 50px;
+}
+
+
+
+.section-04-devider{
+    margin-top: 60px;
+}
+
+.footer{
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+#footer-heading{
+    font-size: 30px;
+    font-family: Nunito;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.footer-link{
+    color: #282D98;
+    font-family: Nunito;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: left;
+    font-size: 18px;
+}
+
+.explore-details{
+    font-family: Nunito;
+    font-weight: 500;
+    -webkit-text-stroke: 0.3px black;
+    color: black;
+    width: 85%;
+    margin-top: -5px;
+}
+
+.explore-img{
+    width: 62%;
+}
+
+
+
+.section-05-devider{
+    margin-top: -20px;
+}

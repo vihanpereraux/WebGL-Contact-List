@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+
+#explore-heading{
+    font-family: Nunito;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.6;
+    margin-top: 40px;
+    margin-bottom: -10px;
+}
+
+.section-01-devider{
+    /* margin-top: 60px; */
+    margin-bottom: 70px;
+}
+.devider-01-txt{
+    font-family: Nunito;
+    font-weight: 600;
+    margin-bottom: -10px;
+    font-size: 12px;
+    color: #000000
+}
+.devider-01-txt-right{
+    font-family: Nunito;
+    font-weight: 600;
+    margin-bottom: -10px;
+    font-size: 12px;
+    color: #F46C5A;
+    text-align: right;   
+}
+
+#devider-01{
+    background-color: #000000;
+    height: 1px;
+    margin-top: 20px;
+}
+
+.view-page-title{
+    font-family: Nunito;
+    font-weight: 600; 
+    color: #282D98;
+    font-size: 15px;
+}
+
+.view-page-data{
+    font-family: Nunito;
+    -webkit-text-stroke: 0.3px black; 
+    color: black;
+    font-size: 17px;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+
+
+
+.section-02-devider{
+    margin-top: 10px;
+    margin-bottom: 70px;
+}
+
+.form-label{
+    color: #282D98;
+    font-family: Nunito;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+.form-control:focus {
+    border-color: #FF543E;
+    box-shadow: none;
+}
+
+.custom-input{
+    width: 69%;
+    height: 50px;
+    border-radius: 12px;
+    font-family: Nunito;
+    font-weight: 600; 
+    border-color: #D2D2D2; 
+    font-size: 16px; 
+}
+
+
+
+.all-tags{
+    color: #282D98;
+    font-family: Nunito;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.create-btn{
+    background-color: black;
+    width: 69%;
+    height: 55px;
+    border-radius: 12px;
+}
+
+.create-btn p{
+    color: white;
+    padding-top: 8px;
+    font-family: Nunito;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.delete-btn{
+    background-color: #FF543E;
+    width: 69%;
+    height: 55px;
+    border-radius: 12px;
+    /* margin-bottom: 70px; */
+}
+
+.delete-btn p{
+    color: white;
+    padding-top: 8px;
+    font-family: Nunito;
+    font-weight: 500;
+    font-size: 17px;
+}
