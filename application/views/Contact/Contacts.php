@@ -126,7 +126,7 @@
                             <input type="text" class="form-control custom-input" id="contact_email" required>
                         </div>
                     </form>
-                    <button class="btn create-btn mt-4" id="add-contact">
+                    <button class="btn create-btn mt-4" id="add-contact" onclick="createContact()">
                         <p> &nbsp + &nbsp Save Contact</p></button>
                 </div>
             </div>
@@ -394,53 +394,64 @@
 
         // -------------------------------Upload contact------------------------------ //
 
+        function createContact()
+        {
 
-        // Model for add contact
-        var PostContact = Backbone.Model.extend({
-            url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/insert',
-            idAttribute: "contact_id",
-        });
-
-        //Backbone view
-        var ContactForm = Backbone.View.extend({
-            el: '#postcontact',
-            initialize: function() {
-                
-            },
-            render: function() {
-                return this;
-            },
-            events: {
-                "click #add-contact" : 'addcontact',
-            },
-            addcontact: function () {
-                
-                var ppp = new PostContact({
-                    'contact_fname': $('#contact_fname').val(),
-                    'contact_number': $('#contact_number').val(),
-                    'id': $('#id').val(),
-                    'contact_note': $('#contact_note').val(),
-                    'contact_address': $('#contact_address').val(),
-                    'contact_sname': $('#contact_sname').val(),
-                    'contact_email': $('#contact_email').val()
-                })
-                var ss = ppp.toJSON();
-
-                incomingContacts.add(ppp);
-                ppp.save(ss);
-                console.log(incomingContacts.toJSON());
-
-                alert('A new contact added !');
-
-                document.getElementById("myForm").reset();
-
-                var firstView3 = new ContactListView();
-                firstView3.render();
+            if( !($('#contact_fname').val() && $('#contact_number').val()) )
+            {
+                alert('Fill required fields before creating a contact');
             }
-        });
+            else
+            {
+                // Model for add contact
+                var PostContact = Backbone.Model.extend({
+                    url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/insert',
+                    idAttribute: "contact_id",
+                });
 
-        //View instance
-        var contactForm = new ContactForm();
+                //Backbone view
+                var ContactForm = Backbone.View.extend({
+                    el: '#postcontact',
+                    initialize: function() {
+                        
+                    },
+                    render: function() {
+                        return this;
+                    },
+                    events: {
+                        "click #add-contact" : 'addcontact',
+                    },
+                    addcontact: function () {
+                        
+                        var ppp = new PostContact({
+                            'contact_fname': $('#contact_fname').val(),
+                            'contact_number': $('#contact_number').val(),
+                            'id': $('#id').val(),
+                            'contact_note': $('#contact_note').val(),
+                            'contact_address': $('#contact_address').val(),
+                            'contact_sname': $('#contact_sname').val(),
+                            'contact_email': $('#contact_email').val()
+                        })
+                        var ss = ppp.toJSON();
+
+                        incomingContacts.add(ppp);
+                        ppp.save(ss);
+                        console.log(incomingContacts.toJSON());
+
+                        alert('A new contact added !');
+
+                        document.getElementById("myForm").reset();
+
+                        var firstView3 = new ContactListView();
+                        firstView3.render();
+                    }
+                });
+            }
+
+            //View instance
+            var contactForm = new ContactForm();
+
+        }
 
             
         // -------------------------------Update contact------------------------------ //
