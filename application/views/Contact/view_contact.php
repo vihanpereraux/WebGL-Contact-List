@@ -80,13 +80,13 @@
             </div>
 
             <div class="col-lg-6" style="padding-left: 35px">
+
                 <div id="taglist"></div>   
 
-                <div class="">
-                    <div id="assigntag">
+                <div id="assigntag">
                     <label class="form-label">Assign new tags</label>
                     <select class="form-control custom-input" id="tag_id">
-                        <option disabled selected="selected" value>Select</option>
+                        <option disabled selected="selected" value="0">Select</option>
                         <option value="1">Home</option>
                         <option value="2">School</option>
                         <option value="3">Office</option>
@@ -94,26 +94,25 @@
                         <option value="6">Temple</option>
                     </select>    
                     <br>
-                    <button class="btn create-btn" id="asign-tag">
+                    <button class="btn create-btn" id="asign-tag" onclick="assignTags()">
                         <p>+ Assign Tags</p></button>
                 </div><br>
 
-                <form id="myForm">
-                    <div id="deletetag">
-                        <label class="form-label">Remove tags</label>
-                        <select class="form-control custom-input" id="delete_tag_id">
-                            <option disabled selected="selected" value>Select</option>
-                            <option value="1">Home</option>
-                            <option value="2">School</option>
-                            <option value="3">Office</option>
-                            <option value="4">Family</option>
-                            <option value="6">Temple</option>
-                        </select>
+                <div id="deletetag">
+                    <label class="form-label">Remove tags</label>
+                    <select class="form-control custom-input" id="delete_tag_id">
+                        <option disabled selected="selected" value>Select</option>
+                        <option value="1">Home</option>
+                        <option value="2">School</option>
+                        <option value="3">Office</option>
+                        <option value="4">Family</option>
+                        <option value="6">Temple</option>
+                    </select>
 
-                        <br>
-                        <button class="btn delete-btn" id="delete-tag"><p>- Delete Tags</p></button>
-                    </div>
-                </form>
+                    <br>
+                    <button class="btn delete-btn" id="delete-tag" onclick="tagDeleteFunction()"><p>- Delete Tags</p></button>
+                </div>
+                
                 <div style="margin-top: 100px"></div>
             </div>
 
@@ -274,126 +273,155 @@
 
         // ----------------------------------Adding new tags----------------------------------//
 
+        function assignTags()
+        {
+                //New model for assign tags
+                var AssignTag = Backbone.Model.extend({
+                        urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/Attachments/storeAttachment',
+                        idAttribute: "attachment_id",
+                    });
 
-        //New model for assign tags
-        var AssignTag = Backbone.Model.extend({
-            urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/Attachments/storeAttachment',
-            idAttribute: "attachment_id",
-        });
+                //Backbone view for assign tags
+                var ContactForm = Backbone.View.extend({
+                    el: '#assigntag',
+                    initialize: function() {
+                        
+                    },
+                    render: function() {
+                        return this;
+                    },
+                    events: {
+                        "click #asign-tag" : 'assigntag'
+                    },
+                    assigntag: function () {
 
-        //Backbone view for assign tags
-        var ContactForm = Backbone.View.extend({
-            el: '#assigntag',
-            initialize: function() {
-                
-            },
-            render: function() {
-                return this;
-            },
-            events: {
-                "click #asign-tag" : 'assigntag'
-            },
-            assigntag: function () {
+                        if( $('#tag_id').val() == 1 )
+                        {
+                            var assignedTag = new AssignTag({
+                                'contact_id': <?php echo $contact_id; ?>, 
+                                'tag_id': $('#tag_id').val(),
+                                'tag_name': 'Home'
+                            })
+                        }
 
-                if( $('#tag_id').val() == 1 )
-                {
-                    var assignedTag = new AssignTag({
-                        'contact_id': <?php echo $contact_id; ?>, 
-                        'tag_id': $('#tag_id').val(),
-                        'tag_name': 'Home'
-                    })
-                }
+                        if( $('#tag_id').val() == 2 )
+                        {
+                            var assignedTag = new AssignTag({
+                                'contact_id': <?php echo $contact_id; ?>, 
+                                'tag_id': $('#tag_id').val(),
+                                'tag_name': 'School'
+                            })
+                        }
 
-                if( $('#tag_id').val() == 2 )
-                {
-                    var assignedTag = new AssignTag({
-                        'contact_id': <?php echo $contact_id; ?>, 
-                        'tag_id': $('#tag_id').val(),
-                        'tag_name': 'School'
-                    })
-                }
+                        if( $('#tag_id').val() == 3 )
+                        {
+                            var assignedTag = new AssignTag({
+                                'contact_id': <?php echo $contact_id; ?>, 
+                                'tag_id': $('#tag_id').val(),
+                                'tag_name': 'Office'
+                            })
+                        }
 
-                if( $('#tag_id').val() == 3 )
-                {
-                    var assignedTag = new AssignTag({
-                        'contact_id': <?php echo $contact_id; ?>, 
-                        'tag_id': $('#tag_id').val(),
-                        'tag_name': 'Office'
-                    })
-                }
+                        if( $('#tag_id').val() == 4 )
+                        {
+                            var assignedTag = new AssignTag({
+                                'contact_id': <?php echo $contact_id; ?>, 
+                                'tag_id': $('#tag_id').val(),
+                                'tag_name': 'Family'
+                            })
+                        }
 
-                if( $('#tag_id').val() == 4 )
-                {
-                    var assignedTag = new AssignTag({
-                        'contact_id': <?php echo $contact_id; ?>, 
-                        'tag_id': $('#tag_id').val(),
-                        'tag_name': 'Family'
-                    })
-                }
+                        if( $('#tag_id').val() == 6 )
+                        {
+                            var assignedTag = new AssignTag({
+                                'contact_id': <?php echo $contact_id; ?>, 
+                                'tag_id': $('#tag_id').val(),
+                                'tag_name': 'Temple'
+                            })
+                        }
 
-                if( $('#tag_id').val() == 6 )
-                {
-                    var assignedTag = new AssignTag({
-                        'contact_id': <?php echo $contact_id; ?>, 
-                        'tag_id': $('#tag_id').val(),
-                        'tag_name': 'temple'
-                    })
-                }
+                        var ppp = assignedTag.toJSON();
 
-                var ppp = assignedTag.toJSON();
+                        incomingContacts.add(assignedTag);
 
-                incomingContacts.add(assignedTag);
+                        assignedTag.save(ppp, {
+                            success: function (response) {
+                                console.log(response.toJSON().status);
+                                assignedTag.save(ppp);
+                                var firstView3 = new TagListView();
+                                firstView3.render();
+                            },
+                            error: function () {
+                                console.log('Failed to add');
+                            }
+                        });
 
-                var firstView3 = new TagListView();
-                firstView3.render();
 
-                incomingContacts.add(assignedTag);
-                assignedTag.save(ppp);
+                        $('#tag_id').val(0);
 
-                alert('New tag added !');
-            } 
-        });
+                        alert('New tag added !');
+                    } 
+                });
+                // Instance for view
+                var contactForm = new ContactForm();
+        }
 
-        // Instance for view
-        var contactForm = new ContactForm();
 
 
         // ----------------------------------Delete assigned tags----------------------------------//
 
 
-        // Model to delete data
-        var DeleteTag = Backbone.Model.extend({
-            urlRoot: 'http://localhost/WebGL-Contact-List/index.php/api/Attachments/deleteAttachment',
-            idAttribute: "attachment_id",
-        });
+        function tagDeleteFunction() 
+        {
+            alert('Delete tag clicked');  
 
-        //Backbone view
-        var DeleteTagView = Backbone.View.extend({
-            el: '#deletetag',
+            // Model to delete data
+            var DeleteTag = Backbone.Model.extend({
+                url: 'http://localhost/WebGL-Contact-List/index.php/api/Attachments/deleteAttachment',
+                defaults:{
+                    contact_address: "",
+                    contact_fname: "",
+                    contact_id: "",
+                    contact_note: "",
+                    contact_number: "",
+                    contact_sname: "",
+                    id: "",
+                    tag_id: "",
+                    tag_name: "",
+                }
+            });
 
-            initialize: function () {
-                
-            },
-            render: function () {
-                
-            },
-            events: {
-                "click #delete-tag" : 'deletetag',
-            },
-            deletetag: function () {
-                var deletedTag = new DeleteTag({
-                    'contact_id': <?php echo $contact_id; ?>, 
-                    'tag_id': $('#delete_tag_id').val(),
-                })
-                var ppp = deletedTag.toJSON();
-                deletedTag.destroy();
-                var firstView1 = new ContactListView();
-                firstView1.render();
-            } 
-        });
+            //Backbone view
+            var DeleteTagView = Backbone.View.extend({
+                el: '#deletetag',
 
-        //View instance
-        var deleteTagView = new DeleteTagView();
+                initialize: function () {
+                    
+                },
+                render: function () {
+                    
+                },
+                events: {
+                    "click #delete-tag" : 'deletetag',
+                },
+                deletetag: function () {
+                    var deletedTag = new DeleteTag({
+                        'contact_id': <?php echo $contact_id; ?>, 
+                        'tag_id': $('#delete_tag_id').val(),
+                    })
+
+                    // var ppp = deletedTag.toJSON();
+
+                    deletedTag.destroy();
+
+                    var firstView1 = new TagListView();
+                    firstView1.render();
+                } 
+            });
+
+            //View instance
+            var deleteTagView = new DeleteTagView();  
+        }
 
 
         // ---------------------------------- Delete contacts ----------------------------------//
@@ -441,11 +469,9 @@
                         'contact_address':'',
                         'contact_sname':'',
                     });
-                    //var deleteContact = new DeleteContact();
+                    
                     deleteContact.destroy();
                     console.log(deleteContact.destroy());
-                    // var firstView1 = new ContactListView();
-                    // firstView1.render();
                 } 
             });
 

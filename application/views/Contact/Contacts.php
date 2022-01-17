@@ -426,7 +426,7 @@
                         var ppp = new PostContact({
                             'contact_fname': $('#contact_fname').val(),
                             'contact_number': $('#contact_number').val(),
-                            'id': $('#id').val(),
+                            'id': 0,
                             'contact_note': $('#contact_note').val(),
                             'contact_address': $('#contact_address').val(),
                             'contact_sname': $('#contact_sname').val(),

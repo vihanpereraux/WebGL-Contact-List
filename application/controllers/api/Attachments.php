@@ -52,11 +52,14 @@ class Attachments extends RestController
     public function storeAttachment_post()
     {
         $attachment = new AttachmentModel;
+        $contact_id = $this->post('contact_id');
+        $tag_id = $this->post('tag_id');
+
         $response = [
             'contact_id' => $this->post('contact_id'),
             'tag_id' => $this->post('tag_id')
         ];
-        $result = $attachment->insert_attachment($response);
+        $result = $attachment->insert_attachment($contact_id, $tag_id);
         //$this->response($response, 200);
 
         if($result > 0)
@@ -104,26 +107,25 @@ class Attachments extends RestController
     public function deleteAttachment_delete()
     {
         $attachment = new AttachmentModel;
-        $response = [
-            'contact_id' => $this->delete('contact_id'),
-            'tag_id' => $this->delete('tag_id'),
-        ];
-        $result = $attachment->delete_attachment($response);
 
+        $contact_id = $this->delete('contact_id');
+        $tag_id = $this->delete('tag_id');
 
-
-        // $attachment = new AttachmentModel;
-        // $result = $attachment->delete_attachment($id);
-        // if($result != null)
-        // {
-        //     $this->response(['message' => 'Completely deleted'
-        //     ], RestController::HTTP_OK);
-        // }
-        // else
-        // {
-        //     $this->response(['message' => 'Completely !deleted'
-        //     ], RestController::HTTP_BAD_REQUEST);
-        // }
+        $result = $attachment->delete_attachment($contact_id, $tag_id);
+        if($result > 0)
+        {
+            $this->response([
+                'status' => true,
+                'message' => 'Attchment deleted in the db'
+            ], RestController::HTTP_OK);
+        }
+        else
+        {
+            $this->response([
+                'status' => false,
+                'message' => 'Attchment not deleted in the db'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
     }
 
 
