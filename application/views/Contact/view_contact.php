@@ -295,17 +295,62 @@
             },
             assigntag: function () {
 
-                var assignedTag = new AssignTag({
-                    'contact_id': <?php echo $contact_id; ?>, 
-                    'tag_id': $('#tag_id').val(),
-                })
+                if( $('#tag_id').val() == 1 )
+                {
+                    var assignedTag = new AssignTag({
+                        'contact_id': <?php echo $contact_id; ?>, 
+                        'tag_id': $('#tag_id').val(),
+                        'tag_name': 'Home'
+                    })
+                }
+
+                if( $('#tag_id').val() == 2 )
+                {
+                    var assignedTag = new AssignTag({
+                        'contact_id': <?php echo $contact_id; ?>, 
+                        'tag_id': $('#tag_id').val(),
+                        'tag_name': 'School'
+                    })
+                }
+
+                if( $('#tag_id').val() == 3 )
+                {
+                    var assignedTag = new AssignTag({
+                        'contact_id': <?php echo $contact_id; ?>, 
+                        'tag_id': $('#tag_id').val(),
+                        'tag_name': 'Office'
+                    })
+                }
+
+                if( $('#tag_id').val() == 4 )
+                {
+                    var assignedTag = new AssignTag({
+                        'contact_id': <?php echo $contact_id; ?>, 
+                        'tag_id': $('#tag_id').val(),
+                        'tag_name': 'Family'
+                    })
+                }
+
+                if( $('#tag_id').val() == 6 )
+                {
+                    var assignedTag = new AssignTag({
+                        'contact_id': <?php echo $contact_id; ?>, 
+                        'tag_id': $('#tag_id').val(),
+                        'tag_name': 'temple'
+                    })
+                }
 
                 var ppp = assignedTag.toJSON();
+
+                incomingContacts.add(assignedTag);
+
+                var firstView3 = new TagListView();
+                firstView3.render();
+
                 incomingContacts.add(assignedTag);
                 assignedTag.save(ppp);
+
                 alert('New tag added !');
-                document.getElementById("myForm").reset();
-                console.log(incomingContacts.toJSON());
             } 
         });
 
