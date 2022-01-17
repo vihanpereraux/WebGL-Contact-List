@@ -41,16 +41,7 @@ class ContactModel extends CI_Model
     public function delete_contact($id)
     {
         $get_query = $this->db->get('contacts');
-        if($get_query->num_rows() >= $id)
-        {
-            $query = $this->db->delete('contacts', ['contact_id' => $id]);
-            return $query;
-        }
-        else
-        {
-            return null;
-        }
-
+        return $this->db->delete('contacts', ['contact_id' => $id]);
     }
 }
 

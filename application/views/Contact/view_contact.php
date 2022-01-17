@@ -61,10 +61,10 @@
     <div class="container section-02-devider">
         <div class="row">
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt">TAGS</p>
+                <p class="mt-5 devider-01-txt">ASSIGNED &nbsp TAGS</p>
             </div>
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt-right">ADD NEW TAGS</p>
+                <p class="mt-5 devider-01-txt-right">ASSIGN &nbsp NEW &nbsp TAGS</p>
             </div>
         </div>
         <div id="devider-01"></div>
@@ -111,8 +111,7 @@
                         </select>
 
                         <br>
-                        <button class="btn delete-btn" id="delete-tag">
-                            <p>- Delete Tags</p></button>
+                        <button class="btn delete-btn" id="delete-tag"><p>- Delete Tags</p></button>
                     </div>
                 </form>
                 <div style="margin-top: 100px"></div>
@@ -122,25 +121,27 @@
     </div>
 
 
-
-    <!-- Delete tag -->
-    <!-- <div class="container">
-        <form id="myForm">
-            <div id="deletetag">
-                <label for="html">Delete Tag</label>
-                <select class="form-control" id="delete_tag_id">
-                    <option value="1">Home</option>
-                    <option value="2">School</option>
-                    <option value="3">Office</option>
-                    <option value="4">Family</option>
-                    <option value="6">Temple</option>
-                </select>
-
-                <br>
-                <button class="btn btn-danger" id="delete-tag">Delete Tags</button>
+    <div class="container section-02-devider">
+        <div class="row">
+            <div class="col-lg-6">
+                <p class="mt-5 devider-01-txt">REMOVE &nbsp USER</p>
             </div>
-        </form>
-    </div> -->
+            <div class="col-lg-6">
+                <p class="mt-5 devider-01-txt-right">ALL &nbsp USER &nbsp DETAILS &nbsp & &nbsp TAGS</p>
+            </div>
+        </div>
+        <div id="devider-01"></div>
+    </div>
+
+    <div class="continer">
+        <div id="deletecontact">
+            <button class="btn btn-danger" id="delete-contact" 
+                onclick="deleteFunction()">- Delete Tags</button>
+        </div>
+    </div>
+
+    <a href="http://localhost/WebGL-Contact-List/">Back to home</a>
+
 
     <script>
 
@@ -312,7 +313,7 @@
         var contactForm = new ContactForm();
 
 
-        // ----------------------------------Adding new tags----------------------------------//
+        // ----------------------------------Delete assigned tags----------------------------------//
 
 
         // Model to delete data
@@ -348,6 +349,64 @@
 
         //View instance
         var deleteTagView = new DeleteTagView();
+
+
+        // ---------------------------------- Delete contacts ----------------------------------//
+
+
+        function deleteFunction() {
+            //alert("button cicked!");
+
+
+            // Model to delete contact
+            var DeleteContact = Backbone.Model.extend({
+                url: 'http://localhost/WebGL-Contact-List/index.php/api/contacts/delete/<?php echo $contact_id ?>',
+                defaults:{
+                    contact_id:'',
+                    contact_fname:'',
+                    contact_number:'',
+                    id: '',
+                    contact_note:'',
+                    contact_address:'',
+                    contact_sname:'',
+                }
+            });
+
+            //Backbone view
+            var DeleteContactView = Backbone.View.extend({
+                el: '#deletecontact',
+
+                initialize: function () {
+                    
+                },
+                render: function () {
+                    
+                },
+                events: {
+                    "click #delete-contact" : 'deletecontact',
+                },
+                deletecontact: function () {
+                    console.log('view works !');
+                    var deleteContact = new DeleteContact({
+                        'contact_id': <?php echo $contact_id ?>,
+                        'contact_fname':'',
+                        'contact_number':'',
+                        'id': '',
+                        'contact_note':'',
+                        'contact_address':'',
+                        'contact_sname':'',
+                    });
+                    //var deleteContact = new DeleteContact();
+                    deleteContact.destroy();
+                    console.log(deleteContact.destroy());
+                    // var firstView1 = new ContactListView();
+                    // firstView1.render();
+                } 
+            });
+
+            var deleteContactView = new DeleteContactView();
+
+        }
 
 
     </script>

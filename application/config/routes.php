@@ -75,7 +75,7 @@ $route['api/contacts/getbyid/(:any)'] = 'api/Contacts/getContactbyId/$1';
 
 $route['api/contacts/update'] = 'api/Contacts/updateContact';
 
-$route['api/contacts/delete/(:any)'] = 'api/Users/deleteContact/$1';
+$route['api/contacts/delete/(:any)'] = 'api/Contacts/deleteContact/$1';
 
 
 // Tags routes

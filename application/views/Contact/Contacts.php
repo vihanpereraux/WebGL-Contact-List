@@ -373,7 +373,7 @@
                     "<div class='names'>" + 
                             "<div class='container' style='padding-left: 10px; padding-left: 10px;'>" +
                                 "<div class='row singe-record'>" +
-                                "<div class='col-3' id='full-name'><a href = '<?php echo base_url('index.php/Welcome/View/'); ?>" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
+                                "<div class='col-3' id='full-name'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/View/" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
                                 "<div class='col-2' style='color: ; font-weight: 600;'>" + "0" +c.get('contact_number') + "</div>" +
                                 "<div class='col-4'>" + c.get('contact_address') + "</div>" +
                                 "<div class='col-2'>" + c.get('contact_email') + "</div>" +
@@ -425,12 +425,17 @@
                     'contact_email': $('#contact_email').val()
                 })
                 var ss = ppp.toJSON();
+
                 incomingContacts.add(ppp);
-                console.log(incomingContacts.toJSON());
                 ppp.save(ss);
+                console.log(incomingContacts.toJSON());
+
                 alert('A new contact added !');
+
                 document.getElementById("myForm").reset();
-                console.log("ss");
+
+                var firstView3 = new ContactListView();
+                firstView3.render();
             }
         });
 
