@@ -36,15 +36,15 @@
 
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="#">ALL CONTACTS 🡥</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#all-contacts">ALL CONTACTS 🡥</a></li>
                             &nbsp
-                            <li class="nav-item"><a class="nav-link" href="#">CREATE 🡥</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#create-contacts">CREATE 🡥</a></li>
                             &nbsp
-                            <li class="nav-item"><a class="nav-link" href="#">MANAGE 🡥</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#manage-contacts">MANAGE 🡥</a></li>
                             &nbsp
-                            <li class="nav-item"><a class="nav-link" href="#">SEARCH 🡥</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#search-w-name">SEARCH 🡥</a></li>
                             &nbsp
-                            <li class="nav-item"><a class="nav-link" href="#">US 🡥</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#footer-scroll">US 🡥</a></li>
                             &nbsp
                         </ul>
                     </div>
@@ -55,31 +55,31 @@
             <div id="menu-links">
                 <div class="row">
                     <div class="col-lg-3"></div>
-                    <div class="col-lg-5"><a href=""><h3>ALL CONTACTS</h3></a></div>
+                    <div class="col-lg-5"><a href="#all-contacts"><h3>ALL CONTACTS</h3></a></div>
                     <div class="col-lg-1"><h3>🡥</h3></div>
                     <div class="col-lg-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3"></div>
-                    <div class="col-lg-5"><a href=""><h3>CREATE CONTATCS</h3></a></div>
+                    <div class="col-lg-5"><a href="#create-contacts"><h3>CREATE CONTATCS</h3></a></div>
                     <div class="col-lg-1"><h3>🡥</h3></div>
                     <div class="col-lg-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3"></div>
-                    <div class="col-lg-5"><a href=""><h3>MANAGE CONTATCS</h3></a></div>
+                    <div class="col-lg-5"><a href="#manage-contacts"><h3>MANAGE CONTATCS</h3></a></div>
                     <div class="col-lg-1"><h3>🡥</h3></div>
                     <div class="col-lg-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3"></div>
-                    <div class="col-lg-5"><a href=""><h3>SEARCH CONTATCS / W NAMES</h3></a></div>
+                    <div class="col-lg-5"><a href="#search-w-name"><h3>SEARCH CONTATCS / W NAMES</h3></a></div>
                     <div class="col-lg-1"><h3>🡥</h3></div>
                     <div class="col-lg-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3"></div>
-                    <div class="col-lg-5"><a href=""><h3>SEARCH CONTATCS / W TAGS</h3></a></div>
+                    <div class="col-lg-5"><a href="#search-w-tag"><h3>SEARCH CONTATCS / W TAGS</h3></a></div>
                     <div class="col-lg-1"><h3>🡥</h3></div>
                     <div class="col-lg-3"></div>
                 </div>
@@ -105,6 +105,7 @@
 
 
     <div class="container section-01-devider">
+        <div id="all-contacts"></div>
         <div class="row">
             <div class="col-lg-6">
                 <p class="mt-5 devider-01-txt">✦ &nbsp SECTION 01 &nbsp | &nbsp ALL CONTACTS</p>
@@ -161,7 +162,9 @@
     <!-- Form for creating contacts -->
     <div class="container mt-5">
         <div class="row" style="padding-left: 35px;">
-            
+
+            <div id="create-contacts"></div>  
+
             <div class="col-lg-6">
                 
                 <img class="mx-auto d-block" style="width: 65%; margin-top: 50px;" 
@@ -261,6 +264,8 @@
 
     <div class="container mt-5">
         <div class="row" style="padding-left: 35px;">
+
+            <div id="manage-contacts"></div>
 
             <div class="col-lg-6">
 
@@ -370,30 +375,32 @@
             <div class="col-lg-6 my-auto" style="line-height: 1.9; padding-left: 35px;">
                 <h1 id="footer-heading">✶ &nbsp Let's Find Your <span style="color: #F46C5A">Contacts</span> &nbsp <span style="color: #282D98"></span></h1>
 
-                <p class="mt-5">
+                <p class="">
+                    <div id="search-w-name"></div>
                     <a href="<?php echo base_url('index.php/Welcome/Explore'); ?>" 
-                        class="footer-link">Explore Your Contacts by Name &nbsp 🡭</a>
+                        class="footer-link">Explore Your Contacts by Name</a>
                 </p>
-                <p class="explore-details mb-4">Visit this page to explore all the contacts you've saved in your contact list
+                <p class="explore-details mb-4">🡭 &nbsp Visit this page to explore all the contacts you've saved in your contact list
                     using their surname. You can add special notes and tags to categorize them. 
                 </p>
 
                 <div id="footer-devider"><hr></div>
 
                 <p class="mt-4">
+                <div id="search-w-tag"></div>
                     <a href="<?php echo base_url('index.php/Welcome/Tags'); ?>" 
-                        class="footer-link">Explore Your Contacts by Tag &nbsp 🡭</a><br>
+                        class="footer-link">Explore Your Contacts by Tag</a><br>
                 </p>
-                <p class="explore-details mb-4">Visit this page to explore all the contacts you've saved in your contact list
+                <p class="explore-details mb-4">🡭 &nbsp Visit this page to explore all the contacts you've saved in your contact list
                     using tags. You can add special notes and tags to categorize them.
                 </p>
 
                 <div id="footer-devider"><hr></div>
 
                 <p class="mt-4">
-                    <a href="" class="footer-link">Explore Your All Contacts &nbsp 🡭</a>
+                    <a href="" class="footer-link">Explore Your All Contacts</a>
                 </p>
-                <p class="explore-details mb-4">Scroll up to explore all the contacts you've saved in your contact list. 
+                <p class="explore-details mb-4">🡭 &nbsp Scroll up to explore all the contacts you've saved in your contact list. 
                     You can add special notes and tags to categorize them.</p>
             </div>
 
@@ -421,19 +428,28 @@
     <div class="footer-section">
         <div class="row">
 
+            <div id="footer-scroll"></div>
+
             <div class="container footer-section-devider">
                 <div class="row">
                     <div class="col-lg-4">
-                        <p class="mt-5 menu-devider-txt">LET'S &nbsp GET &nbsp CONNECTED</p>
+                        <p class="mt-5 footer-devider-txt">LET'S &nbsp GET &nbsp CONNECTED</p>
                     </div>
                     <div class="col-lg-4">
-                        <p class="mt-5 menu-devider-txt-middle">SCROLL &nbsp UP &nbsp 🡡</p>
+                        <p class="mt-5 footer-devider-txt-middle">SCROLL &nbsp UP &nbsp 🡡</p>
                     </div>
                     <div class="col-lg-4">
-                        <p class="mt-5 menu-devider-txt-right">©️ VIHANPERERAUX</p>
+                        <p class="mt-5 footer-devider-txt-right">©️ VIHANPERERAUX</p>
                     </div>
                 </div>
-                <!-- <div id="menu-devider-01"></div> -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <p id="copyright-txt">Copyright 2022 @vihanpereraux For all the implementatins & I do not own any of the rights 
+                            to the illustrtions in this presenatation.
+                        </p>
+                    </div>
+                </div>
             </div>
             
         </div>
