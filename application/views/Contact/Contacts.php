@@ -20,14 +20,97 @@
         
 </head>
 <body>
+    
+    <div class="menu-section">
+        <div class="row">
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                    <img style="width: 40%; margin-left: 0px;" src="http://localhost/WebGL-Contact-List/img/logo.png">
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="#">ALL CONTACTS 🡥</a></li>
+                            &nbsp
+                            <li class="nav-item"><a class="nav-link" href="#">CREATE 🡥</a></li>
+                            &nbsp
+                            <li class="nav-item"><a class="nav-link" href="#">MANAGE 🡥</a></li>
+                            &nbsp
+                            <li class="nav-item"><a class="nav-link" href="#">SEARCH 🡥</a></li>
+                            &nbsp
+                            <li class="nav-item"><a class="nav-link" href="#">US 🡥</a></li>
+                            &nbsp
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main links -->
+            <div id="menu-links">
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5"><a href=""><h3>ALL CONTACTS</h3></a></div>
+                    <div class="col-lg-1"><h3>🡥</h3></div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5"><a href=""><h3>CREATE CONTATCS</h3></a></div>
+                    <div class="col-lg-1"><h3>🡥</h3></div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5"><a href=""><h3>MANAGE CONTATCS</h3></a></div>
+                    <div class="col-lg-1"><h3>🡥</h3></div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5"><a href=""><h3>SEARCH CONTATCS / W NAMES</h3></a></div>
+                    <div class="col-lg-1"><h3>🡥</h3></div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5"><a href=""><h3>SEARCH CONTATCS / W TAGS</h3></a></div>
+                    <div class="col-lg-1"><h3>🡥</h3></div>
+                    <div class="col-lg-3"></div>
+                </div>
+            </div>
+
+            <div class="container menu-section-devider">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <p class="mt-5 menu-devider-txt">LET'S &nbsp GET &nbsp CONNECTED</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="mt-5 menu-devider-txt-middle">SCROLL &nbsp DOWN &nbsp 🡣</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="mt-5 menu-devider-txt-right">©️ VIHANPERERAUX</p>
+                    </div>
+                </div>
+                <!-- <div id="menu-devider-01"></div> -->
+            </div>
+
+        </div>
+    </div>
+
 
     <div class="container section-01-devider">
         <div class="row">
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt">SECTION 01 &nbsp | &nbsp ALL CONTACTS</p>
+                <p class="mt-5 devider-01-txt">✦ &nbsp SECTION 01 &nbsp | &nbsp ALL CONTACTS</p>
             </div>
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt-right">YOUR CONTACTS</p>
+                <p class="mt-5 devider-01-txt-right">YOUR CONTACTS &nbsp 🡮</p>
             </div>
         </div>
         <div id="devider-01"></div>
@@ -41,11 +124,8 @@
             </div> 
             <div class="col-lg-4 my-auto" style="margin-left: 10px;">
                 <h4 id="welcome-text">Explore Your <br> Contacts 
-                    <span style="color: #282D98">Vihan Perera</span> &nbsp <span style="color: #F46C5A">: )</span></h4>
+                    <span style="color: #282D98">Vihan Perera</span> &nbsp <span style="color: #F46C5A">ツ</span></h4>
             </div>  
-            <!-- <div class="col-lg-8 my-auto">
-                <img style="width: 120px; margin-left:-80px;" src="http://localhost/WebGL-Contact-List/img/Intro gif.gif">
-            </div>  -->
         </div>
     </div>
 
@@ -68,10 +148,10 @@
     <div class="container section-02-devider">
         <div class="row">
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt">SECTION 02 &nbsp | &nbsp ADD CONTACTS</p>
+                <p class="mt-5 devider-01-txt">✦ &nbsp SECTION 02 &nbsp | &nbsp ADD CONTACTS</p>
             </div>
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt-right">NEW CONTACTS</p>
+                <p class="mt-5 devider-01-txt-right">NEW CONTACTS &nbsp 🡮</p>
             </div>
         </div>
         <div id="devider-01"></div>
@@ -80,15 +160,38 @@
 
     <!-- Form for creating contacts -->
     <div class="container mt-5">
-        <div class="row">
+        <div class="row" style="padding-left: 35px;">
             
-            <div class="col-lg-6 my-auto">
-                <img class="mx-auto d-block" style="width: 70%;" 
+            <div class="col-lg-6">
+                
+                <img class="mx-auto d-block" style="width: 65%; margin-top: 50px;" 
                     src="http://localhost/WebGL-Contact-List/img/createimg.png" alt="">
+
+                <div style="margin-top: 80px;"></div>
+
+                <div id="update-description">
+                    🡭 &nbsp Make sure to enter the first name and contact number before 
+                    adding a new contact to the contact list.
+                </div>
+
+                <div id="update-devider"><hr></div>
+
+                <div id="update-description">
+                    🡭 &nbsp Explore all the contacts that are available in your book in the above 
+                    section and click on names to see contact details.
+                </div>
+
+                <div id="update-devider"><hr></div>
+
+                <div id="update-description">
+                    🡭 &nbsp Once you click the contact name, you can see all the details and
+                    you can assign tags for your contacts.
+                </div>
+
             </div>
 
             <div class="col-lg-6 my-auto">
-                <p id="form-heading">Create Your <span style="color: #FF543E">Contacts</span> &nbsp <span style="color: #282D98">: )</span></p>
+                <p id="form-heading">✶ &nbsp Create Your <span style="color: #FF543E">Contacts</span> &nbsp <span style="color: #282D98"></span></p>
                 
                 <div id="postcontact">
                     <form id="myForm">
@@ -127,7 +230,7 @@
                         </div>
                     </form>
                     <button class="btn create-btn mt-4" id="add-contact" onclick="createContact()">
-                        <p> &nbsp + &nbsp Save Contact</p></button>
+                        <p> Create &nbsp Contact &nbsp 🡭</p></button>
                 </div>
             </div>
         </div>
@@ -137,10 +240,10 @@
     <div class="container section-03-devider">
         <div class="row">
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt">SECTION 03 &nbsp | &nbsp MANAGE CONTACTS</p>
+                <p class="mt-5 devider-01-txt">✦ &nbsp SECTION 03 &nbsp | &nbsp MANAGE CONTACTS</p>
             </div>
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt-right">UPDATE CONTACTS</p>
+                <p class="mt-5 devider-01-txt-right">UPDATE CONTACTS &nbsp 🡮</p>
             </div>
         </div>
         <div id="devider-01"></div>
@@ -157,31 +260,35 @@
     </div> -->
 
     <div class="container mt-5">
-        <div class="row">
-                
-            <div class="col-lg-1">
-                <img class="mx-auto d-block bullet-section" style="width: 35%;"
-                    src="<?php echo base_url('img/star.png'); ?>" alt="">
+        <div class="row" style="padding-left: 35px;">
 
-            </div>
-                
-            <div class="col-lg-5">
+            <div class="col-lg-6">
+
+                <img class="" style="width: 55%; margin-top: 50px; margin-left: 90px;" 
+                    src="http://localhost/WebGL-Contact-List/img/manageimg.png" alt="">
+
+                <div style="margin-top: 80px;"></div>
+
                 <div id="update-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, 
-                    eum quisquam dolores in adipisci necessitatibus quotemeta.
+                    🡭 &nbsp Make sure to copy the fullname or firstname from the contact list before 
+                    clicking the 'update this' button here.
                 </div>
 
-                <img class="manage-img mt-4" style="width: 58%;" 
-                    src=" <?php echo base_url('img/manageimg.png'); ?>" alt="">
+                <div id="update-devider"><hr></div>
+
+                <!-- <img class="manage-img mt-4" style="width: 58%;" 
+                    src=" <?php echo base_url('img/manageimg.png'); ?>" alt=""> -->
 
                 <div id="update-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, 
-                    eum quisquam dolores in adipisci necessitatibus quotemeta.
+                    🡭 &nbsp Once you paste the name you can click 'I wanna update this' and change
+                    contact details in the given form.
                 </div>
 
+                <div id="update-devider"><hr></div>
+
                 <div id="update-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, 
-                    eum quisquam dolores in adipisci necessitatibus quotemeta.
+                    🡭 &nbsp Once you click the 'update conatct' button, changes will update in your
+                    contact list. Make sure to check changes by viewing their profiles.
                 </div>
 
             </div>
@@ -189,7 +296,7 @@
             <div class="col-lg-6 my-auto">
                 <div id="updatecontact">
                     
-                    <p id="form-heading">Manage Your <span style="color: #FF543E">Contacts</span> &nbsp <span style="color: #282D98">: )</span></p>
+                    <p id="form-heading">✶ &nbsp Manage Your <span style="color: #FF543E">Contacts</span> &nbsp <span style="color: #282D98"></span></p>
                     
                     <form id="update-form">
                         <div class="mb-4">  
@@ -235,7 +342,7 @@
                     </form>
                     <div id="updatedcontact">
                         <button class="btn update-btn mt-2" id="send-update">
-                            <p>&nbsp + &nbsp Update Contact</p></button>
+                            <p>Update Contact &nbsp 🡭</p></button>
                     </div>
                 </div>
 
@@ -247,10 +354,10 @@
     <div class="container section-04-devider">
         <div class="row">
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt">SECTION 04 &nbsp | &nbsp EXPLORE CONTACTS</p>
+                <p class="mt-5 devider-01-txt">✦ &nbsp SECTION 04 &nbsp | &nbsp EXPLORE CONTACTS</p>
             </div>
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt-right">EXPLORE &nbsp CONTACTS &nbsp & &nbsp TAGS</p>
+                <p class="mt-5 devider-01-txt-right">EXPLORE &nbsp CONTACTS &nbsp & &nbsp TAGS &nbsp 🡮</p>
             </div>
         </div>
         <div id="devider-01"></div>
@@ -260,38 +367,34 @@
     <div class="container footer">
         <div class="row">
 
-            <div class="col-lg-6 my-auto" style="line-height: 1.9; padding-left: 70px;">
-                <h1 id="footer-heading">Let's Find Your <span style="color: #F46C5A">Contacts</span> &nbsp <span style="color: #282D98">: )</span></h1>
+            <div class="col-lg-6 my-auto" style="line-height: 1.9; padding-left: 35px;">
+                <h1 id="footer-heading">✶ &nbsp Let's Find Your <span style="color: #F46C5A">Contacts</span> &nbsp <span style="color: #282D98"></span></h1>
 
                 <p class="mt-5">
-                    <img class="" style="width: 5%;" 
-                        src="<?php echo base_url('img/orange_star.png'); ?>">&nbsp &nbsp
-                        
                     <a href="<?php echo base_url('index.php/Welcome/Explore'); ?>" 
-                        class="footer-link">Explore Your Contacts</a>
-                        
+                        class="footer-link">Explore Your Contacts by Name &nbsp 🡭</a>
                 </p>
-                <p class="explore-details">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum necessitatibus 
-                    doloribus recusandae aperiam dolor blanditiis ipsa.</p>
+                <p class="explore-details mb-4">Visit this page to explore all the contacts you've saved in your contact list
+                    using their surname. You can add special notes and tags to categorize them. 
+                </p>
 
-                <p class="mt-5">
-                    <img class="" style="width: 5%;" 
-                        src="<?php echo base_url('img/orange_star.png'); ?>">&nbsp &nbsp
+                <div id="footer-devider"><hr></div>
 
+                <p class="mt-4">
                     <a href="<?php echo base_url('index.php/Welcome/Tags'); ?>" 
-                        class="footer-link">Explore Your Contacts by Tag</a><br>
+                        class="footer-link">Explore Your Contacts by Tag &nbsp 🡭</a><br>
                 </p>
-                <p class="explore-details">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum necessitatibus 
-                    doloribus recusandae aperiam dolor blanditiis ipsa.</p>
-
-                <p class="mt-5">
-                    <img class="" style="width: 5%;" 
-                        src="<?php echo base_url('img/orange_star.png'); ?>">&nbsp &nbsp
-
-                    <a href="" class="footer-link">Explore Your All Contacts</a>
+                <p class="explore-details mb-4">Visit this page to explore all the contacts you've saved in your contact list
+                    using tags. You can add special notes and tags to categorize them.
                 </p>
-                <p class="explore-details">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum necessitatibus 
-                    doloribus recusandae aperiam dolor blanditiis ipsa.</p>
+
+                <div id="footer-devider"><hr></div>
+
+                <p class="mt-4">
+                    <a href="" class="footer-link">Explore Your All Contacts &nbsp 🡭</a>
+                </p>
+                <p class="explore-details mb-4">Scroll up to explore all the contacts you've saved in your contact list. 
+                    You can add special notes and tags to categorize them.</p>
             </div>
 
             <div class="col-lg-6 my-auto">
@@ -299,31 +402,43 @@
                     src="<?php echo base_url('img/exploreimg.png'); ?>" alt="">
             </div>
         </div>
-    </div>
+    </div><br>
 
 
-    <div class="container section-05-devider">
+    <!-- <div class="container section-05-devider">
         <div class="row">
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt">SECTION 05 &nbsp | &nbsp FOOTER</p>
+                <p class="mt-5 devider-01-txt">✦ &nbsp SECTION 05 &nbsp | &nbsp FOOTER</p>
             </div>
             <div class="col-lg-6">
-                <p class="mt-5 devider-01-txt-right">LET'S &nbsp WRAP &nbsp UP</p>
+                <p class="mt-5 devider-01-txt-right">LET'S &nbsp WRAP &nbsp UP &nbsp 🡮</p>
             </div>
         </div>
         <div id="devider-01"></div>
-    </div>
-
-
-    <!-- <div class="container mt-5">
-        <a class="btn btn-success" 
-            href="http://localhost/WebGL-Contact-List/index.php/Welcome/Explore">Explore Contact</a>  
-    </div>
-
-    <div class="container mb-5 mt-5">
-        <a class="btn btn-success" 
-            href="http://localhost/WebGL-Contact-List/index.php/Welcome/Tags">Explore Tag</a>  
     </div> -->
+
+
+    <div class="footer-section">
+        <div class="row">
+
+            <div class="container footer-section-devider">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <p class="mt-5 menu-devider-txt">LET'S &nbsp GET &nbsp CONNECTED</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="mt-5 menu-devider-txt-middle">SCROLL &nbsp UP &nbsp 🡡</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="mt-5 menu-devider-txt-right">©️ VIHANPERERAUX</p>
+                    </div>
+                </div>
+                <!-- <div id="menu-devider-01"></div> -->
+            </div>
+            
+        </div>
+    </div>
+
 
 
 
@@ -377,7 +492,7 @@
                                 "<div class='col-2' style='color: ; font-weight: 600;'>" + "0" +c.get('contact_number') + "</div>" +
                                 "<div class='col-4'>" + c.get('contact_address') + "</div>" +
                                 "<div class='col-2'>" + c.get('contact_email') + "</div>" +
-                                "<div class='col-1'><img style='width: 30px;' src='<?php echo base_url('img/Arrow.png'); ?>'></div>" +
+                                "<div class='col-1'><img style='width: 25px;' src='<?php echo base_url('img/Arrow.png'); ?>'></div>" +
                                 "<div class='spacing'></div>" +
                                 // "<hr id='devider'>"+
                             "</div>" +

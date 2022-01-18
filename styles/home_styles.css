@@ -5,22 +5,115 @@
 
 body{
     background-color: white;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 
 
-#devider-01{
-    background-color: #000000;
+.menu-section{
+    background-color: #383838;
+    height: 100vh;
+    width: 100vw;
+}
+
+.navbar{
+    background-color: #383838;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.navbar-nav li{
+    font-family: Nunito;
+    font-weight: 500;
+    font-size: 13px;
+    text-decoration: none;    
+}
+.navbar-nav li a{
+    letter-spacing: 1.3px;
+    text-decoration: none;
+    color: #F4F4F4;
+    -webkit-text-stroke: 0.1px #F4F4F4; 
+}
+.navbar-nav li a:hover{
+    letter-spacing: 1.3px;
+    text-decoration: none;
+    color: #FF543E;
+    -webkit-text-stroke: 0.1px #FF543E; 
+}
+
+#menu-links{
+    margin-top: 18vh;
+}
+
+#menu-links h3{
+    font-family: Nunito;
+    font-weight: 500;
+    color: #F4F4F4;
+    letter-spacing: 0.8px;
+    margin-top: 12px;
+    -webkit-text-stroke: 0.2px #F4F4F4;
+    font-size: 25px;
+}
+
+#menu-links a{
+    text-decoration: none;
+}
+#menu-links h3:hover {
+    color: #FF543E;
+    -webkit-text-stroke: 0.2px #FF543E;
+    padding-left: 10px;
+    transition: 0.25s all ease;
+}
+
+.menu-section-devider{
+    margin-top: 18vh;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.menu-devider-txt{
+    font-family: Nunito;
+    font-weight: 500;
+    -webkit-text-stroke: 0.2px white;
+    margin-bottom: -10px;
+    font-size: 12px;
+    color: #F4F4F4;
+}
+.menu-devider-txt-middle{
+    font-family: Nunito;
+    font-weight: 500;
+    -webkit-text-stroke: 0.2px white;
+    margin-bottom: -10px;
+    font-size: 12px;
+    color: #F4F4F4;
+    text-align: center;
+}
+.menu-devider-txt-right{
+    font-family: Nunito;
+    font-weight: 500;
+    -webkit-text-stroke: 0.2px white;
+    margin-bottom: -10px;
+    font-size: 12px;
+    color: #F4F4F4;
+    text-align: right;
+}
+/* #menu-devider-01{
+    background-color: #F4F4F4;
     height: 1px;
     margin-top: 20px;
-}
+} */
 
+
+
+.section-01-devider{
+    margin-top: 60px;
+}
 .devider-01-txt{
     font-family: Nunito;
     font-weight: 600;
     margin-bottom: -10px;
     font-size: 12px;
-    color: #000000
+    color: #000000;
 }
 .devider-01-txt-right{
     font-family: Nunito;
@@ -30,10 +123,13 @@ body{
     color: black;
     text-align: right;   
 }
-
-.section-01-devider{
-    margin-top: 60px;
+#devider-01{
+    background-color: #000000;
+    height: 1px;
+    margin-top: 20px;
 }
+
+
 
 .section-one{
     margin-top: 60px;
@@ -47,7 +143,6 @@ body{
     line-height: 1.6;
 }
 
-
 table{
     margin-top: 60px;
     border:none;
@@ -55,9 +150,10 @@ table{
 .column-names{
     font-family: Nunito;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 14px;
     color: #FF543E;
     padding-left: 15px;
+    text-transform: uppercase;
 }
 .names{
     font-size: 16px;
@@ -98,18 +194,19 @@ table{
     line-height: 1.6;
     margin-top: 50px;
     margin-bottom: 40px;
-    padding-left: 25px;
+    padding-left: 60px;
 }
 
 #myForm{
-    padding-left: 25px;
+    padding-left: 60px;
 }
 
 .form-label{
     color: #282D98;
     font-family: Nunito;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 13px;
+    text-transform: uppercase;
 }
 
 .form-control:focus {
@@ -118,7 +215,7 @@ table{
 }
 
 .custom-input{
-    width: 72%;
+    width: 75%;
     height: 50px;
     border-radius: 12px;
     font-family: Nunito;
@@ -129,17 +226,18 @@ table{
 
 .create-btn{
     background-color: black;
-    width: 69%;
+    width: 68%;
     height: 55px;
     border-radius: 12px;
-    margin-left: 25px;
+    margin-left: 60px;
 }
 .create-btn p{
     color: white;
-    padding-top: 8px;
+    padding-top: 12px;
     font-family: Nunito;
-    font-weight: 500;
-    font-size: 17px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
 }
 
 
@@ -151,9 +249,19 @@ table{
 #update-description{
     font-family: Nunito;
     font-weight: 600;
-    margin-top: 50px;
     width: 85%;
     line-height: 1.9;
+    color: #3D3D3D;
+    font-size: 15.5px;
+    opacity: 1;
+}
+
+#update-devider hr{
+    color: black;
+    height: 0.5px;
+    width: 85%;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .manage-img{
@@ -161,7 +269,7 @@ table{
 }
 
 #update-form{
-    padding-left: 25px;
+    padding-left: 60px;
 }
 
 .get-name-option{
@@ -174,17 +282,18 @@ table{
 
 .update-btn{
     background-color: black;
-    width: 69%;
+    width: 68%;
     height: 55px;
     border-radius: 12px;
-    margin-left: 25px;
+    margin-left: 60px;
 }
 .update-btn p{
     color: white;
-    padding-top: 8px;
+    padding-top: 12px;
     font-family: Nunito;
-    font-weight: 500;
-    font-size: 17px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
 }
 
 .bullet-section{
@@ -206,33 +315,58 @@ table{
     font-size: 30px;
     font-family: Nunito;
     font-weight: 600;
-    margin-bottom: 40px;
+    margin-bottom: 70px;
 }
 
 .footer-link{
     color: #282D98;
     font-family: Nunito;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     text-align: left;
     font-size: 18px;
+    -webkit-text-stroke: 0.7px #282D98;
+}
+.footer-link:hover{
+    color: #F46C5A;
+    -webkit-text-stroke: 0.7px #F46C5A;
+    padding-left: 10px;
+    transition: 0.25s all ease;
+
 }
 
 .explore-details{
     font-family: Nunito;
-    font-weight: 500;
-    -webkit-text-stroke: 0.3px black;
+    font-weight: 600;
+    color: #3D3D3D;
+    /* -webkit-text-stroke: 0.2px #3D3D3D; */
+    width: 95%;
+    font-size: 15px;
+}
+
+#footer-devider hr{
     color: black;
-    width: 85%;
-    margin-top: -5px;
+    height: 0.5px;
+    width: 95%;
 }
 
 .explore-img{
-    width: 62%;
+    width: 65%;
 }
 
 
 
 .section-05-devider{
     margin-top: -20px;
+}
+
+.footer-section{
+    background-color: #383838;
+    height: 15vh;
+    width: 100vw;
+}
+
+.footer-section-devider{
+    padding-left: 60px;
+    padding-right: 70px;
 }
