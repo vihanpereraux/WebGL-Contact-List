@@ -20,7 +20,7 @@ class ExploreModel extends CI_Model
 
     public function get_contacts_by_tag($tag_id)
     {
-        $query = $this->db->query("SELECT attachments.tag_id, contacts.contact_fname, 
+        $query = $this->db->query("SELECT attachments.tag_id, contacts.contact_fname, contacts.contact_id,
                                    contacts.contact_sname, contacts.contact_number, contacts.contact_address, contacts.contact_email 
                                    FROM attachments
                                    INNER JOIN contacts ON attachments.contact_id = contacts.contact_id

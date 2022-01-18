@@ -19,6 +19,89 @@
 </head>
 <body>
 
+    <div class="menu-section">
+        <div class="row">
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                    <img style="width: 40%; margin-left: 0px;" src="http://localhost/WebGL-Contact-List/img/logo.png">
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/WebGL-Contact-List#all-contacts">ALL CONTACTS 🡥</a></li>
+                            &nbsp
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/WebGL-Contact-List#create-contacts">CREATE 🡥</a></li>
+                            &nbsp
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/WebGL-Contact-List#manage-contacts">MANAGE 🡥</a></li>
+                            &nbsp
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/WebGL-Contact-List#search-w-name">SEARCH 🡥</a></li>
+                            &nbsp
+                            <li class="nav-item"><a class="nav-link" href="http://localhost/WebGL-Contact-List#footer-scroll">US 🡥</a></li>
+                            &nbsp
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main links -->
+            <div id="menu-links">
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5"><a href="http://localhost/WebGL-Contact-List#all-contacts"><h3>ALL CONTACTS</h3></a></div>
+                    <div class="col-lg-1"><h3>🡥</h3></div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5"><a href="http://localhost/WebGL-Contact-List#create-contacts"><h3>CREATE CONTATCS</h3></a></div>
+                    <div class="col-lg-1"><h3>🡥</h3></div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5"><a href="http://localhost/WebGL-Contact-List#manage-contacts"><h3>MANAGE CONTATCS</h3></a></div>
+                    <div class="col-lg-1"><h3>🡥</h3></div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5"><a href="http://localhost/WebGL-Contact-List#search-w-name"><h3>SEARCH CONTATCS / W NAMES</h3></a></div>
+                    <div class="col-lg-1"><h3>🡥</h3></div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-5"><a href="http://localhost/WebGL-Contact-List#search-w-tag"><h3>SEARCH CONTATCS / W TAGS</h3></a></div>
+                    <div class="col-lg-1"><h3>🡥</h3></div>
+                    <div class="col-lg-3"></div>
+                </div>
+            </div>
+
+            <div class="container menu-section-devider">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <p class="mt-5 menu-devider-txt">LET'S &nbsp GET &nbsp CONNECTED</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="mt-5 menu-devider-txt-middle">SCROLL &nbsp DOWN &nbsp 🡣</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="mt-5 menu-devider-txt-right">©️ VIHANPERERAUX</p>
+                    </div>
+                </div>
+                <!-- <div id="menu-devider-01"></div> -->
+            </div>
+
+        </div>
+    </div>
+
+
     <!-- Checking the content -->
     <div class="container">
         <div class="row">
@@ -135,11 +218,11 @@
                         "<div class='names'>" + 
                             "<div class='container' style='padding-left: 10px; padding-left: 10px;'>" +
                                 "<div class='row singe-record'>" +
-                                    "<div class='col-3' id='full-name'><a href = 'http://localhost/WebGL-Contact-List/index.php/Welcome/View/" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
+                                    "<div class='col-3' id='full-name'><a href = '<?php echo base_url('index.php/Welcome/View/'); ?>" + c.get('contact_id') + "'>" + c.get('contact_fname') + " " + c.get('contact_sname') + "</a></div>" + 
                                     "<div class='col-2' style='color: ; font-weight: 600;'>" + "0" +c.get('contact_number') + "</div>" +
                                     "<div class='col-4'>" + c.get('contact_address') + "</div>" +
                                     "<div class='col-2'>" + c.get('contact_email') + "</div>" +
-                                    "<div class='col-1'><img style='width: 30px;' src='http://localhost/WebGL-Contact-List/img/Arrow.png'></div>" +
+                                    "<div class='col-1'><img style='width: 30px;' src='<?php echo base_url('img/Arrow.png'); ?>'></div>" +
                                     "<div class='spacing'></div>" +
                                     // "<hr id='devider'>"+
                                 "</div>" +
